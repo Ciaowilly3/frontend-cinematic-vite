@@ -1,0 +1,6 @@
+.form-modal {
+  position: fixed;
+  width: 600px;
+  right: calc(50% - 300px);
+  top: 25%;
+}
