@@ -3,6 +3,7 @@ import { FaSearch, FaUser } from "react-icons/fa";
 import LoginFormModal from "../LoginFormModal";
 import cinematicLogo from "/cinematic-logo.png";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isShownLogInForm, setIsShownLogInForm] = useState(false);
@@ -19,19 +20,23 @@ const Header = () => {
       <div className="row">
         <div className="col-4">
           <div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
-            nav
+            <Link to={"/AboutUs"} className="link-flush link-third">
+              nav
+            </Link>
           </div>
         </div>
         <div className="col-4">
           <div className="logo-container w-100">
-            <img src={cinematicLogo} alt="logo" />
+            <Link to={"/"}>
+              <img src={cinematicLogo} alt="logo" />
+            </Link>
           </div>
         </div>
         <div className="col-4">
           <div className="icon-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
             <button
               type="button"
-              className="btn-flush"
+              className="btn-flush btn-third"
               onClick={handleLoginFormVisibility}
             >
               <FaUser />

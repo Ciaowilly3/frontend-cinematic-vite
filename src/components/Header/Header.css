@@ -3,8 +3,3 @@
   display: block;
   margin: auto;
 }
-.icon-container button:hover {
-  scale: 1.2;
-  color: var(--my-third);
-  transition: all, 0.2s;
-}
