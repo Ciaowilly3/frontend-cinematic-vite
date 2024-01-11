@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { FaSearch, FaUser } from "react-icons/fa";
-import LoginFormModal from "../LoginFormModal";
+import LoginFormModal from "../../components/LoginFormModal";
 import cinematicLogo from "/cinematic-logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";

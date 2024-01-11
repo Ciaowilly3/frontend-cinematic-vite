@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
+import Header from "./Layouts/Header";
 
 function App() {
   return (
     <div className="App bg-my-secondary">
-      <Header />
-      <div className="container">
+      <div className="">
         <Outlet></Outlet>
       </div>
     </div>

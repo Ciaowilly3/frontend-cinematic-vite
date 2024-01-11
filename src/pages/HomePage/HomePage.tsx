@@ -1,8 +1,11 @@
+import MainLayout from "../../Layouts/MainLayout.tsx/MainLayout";
 import FilmsCarousel from "../../components/FilmsCarousel/FilmsCarousel";
 
 const HomePage = () => (
   <>
-    <FilmsCarousel />
+    <MainLayout>
+      <FilmsCarousel />
+    </MainLayout>
   </>
 );
 

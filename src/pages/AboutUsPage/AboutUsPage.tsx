@@ -1,11 +1,10 @@
-import Header from "../../components/Header";
+import MainLayout from "../../Layouts/MainLayout.tsx/MainLayout";
 
 const AboutUsPage = () => {
   return (
-    <div>
-      <Header />
-      AboutUsPage
-    </div>
+    <MainLayout>
+      <div>AboutUsPage</div>;
+    </MainLayout>
   );
 };
 
