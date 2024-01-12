@@ -3,6 +3,8 @@ import App from "../App";
 import HomePage from "../pages/HomePage";
 import AboutUsPage from "../pages/AboutUsPage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import PrivatePage from "../pages/PrivatePage/PrivatePage";
+import PrivateFilmsPage from "../pages/PrivateFilmsPage/PrivateFilmsPage";
 
 export const router = createBrowserRouter([
   {
@@ -12,11 +14,16 @@ export const router = createBrowserRouter([
       { path: "*", element: <NotFoundPage /> },
       { path: "", element: <HomePage /> },
       { path: "AboutUs", element: <AboutUsPage /> },
+      {
+        path: "/private",
+        element: <PrivatePage />,
+        children: [{ path: "films", element: <PrivateFilmsPage /> }],
+      },
     ],
   },
 ]);
 
-//TODO: pagina con path asterisco per 404
-//TODO: creare componenti per bottoni
+//TODO: come annidare le rotte?
+
 //TODO: fare chiamate post per i film
 //TODO: fare la logica di mostrare form login e slice per token dopo
