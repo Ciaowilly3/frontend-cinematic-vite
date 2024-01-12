@@ -20,7 +20,10 @@ const Header = () => {
       <div className="row">
         <div className="col-4">
           <div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
-            <Link to={"/AboutUs"} className="link-flush link-third">
+            <Link
+              to={"/AboutUs"}
+              className="link-flush link-third text-my-secondary"
+            >
               nav
             </Link>
           </div>
@@ -33,17 +36,17 @@ const Header = () => {
           </div>
         </div>
         <div className="col-4">
-          <div className="icon-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
+          <div className="icon-container text-white d-flex justify-content-center align-items-center h-100 gap-3 ">
             <button
               type="button"
-              className="btn-flush btn-third"
+              className="btn-flush btn-third text-my-secondary"
               onClick={handleLoginFormVisibility}
             >
               <FaUser />
             </button>
             <button
               type="button"
-              className="btn-flush"
+              className="btn-flush btn-third text-my-secondary"
               onClick={handleLoginFormVisibility}
             >
               <FaSearch />
