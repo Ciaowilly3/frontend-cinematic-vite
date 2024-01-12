@@ -13,3 +13,8 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+//TODO: pagina con path asterisco per 404
+//TODO: creare componenti per bottoni
+//TODO: fare chiamate post per i film
+//TODO: fare la logica di mostrare form login e slice per token dopo
