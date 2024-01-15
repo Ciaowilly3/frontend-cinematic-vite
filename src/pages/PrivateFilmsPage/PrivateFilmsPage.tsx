@@ -1,15 +1,9 @@
-import { useEffect } from "react";
-import MainLayout from "../../Layouts/MainLayout.tsx/MainLayout";
-
 const PrivateFilmsPage = () => {
-  useEffect(() => {
-    console.log("abda");
-  });
   return (
-    <MainLayout>
+    <div>
       <div>PrivateFilmPage</div>
       <img src="not-found.svg" alt="" />
-    </MainLayout>
+    </div>
   );
 };
 

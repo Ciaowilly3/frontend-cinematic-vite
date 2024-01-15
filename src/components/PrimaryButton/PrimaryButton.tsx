@@ -1,22 +1,32 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { IconType } from "react-icons";
 
+const styles = {
+  danger: "btn btn-danger",
+  success: "btn btn-success",
+  circle: "rounded rounded-circle",
+} as const;
+
 type BtnProps = {
-  onClickFunction: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClickFunction?: () => void;
   content: string | IconType;
   additionalContent: string | null;
-  style: string;
-  isFormSubmit: boolean;
+  style: keyof typeof styles;
+  type?: "submit" | "button";
 };
 
-const PrimaryButton = (props: BtnProps) => {
-  const { onClickFunction, content, style, isFormSubmit, additionalContent } =
-    props;
+const PrimaryButton = ({
+  onClickFunction,
+  content,
+  style,
+  type = "button",
+  additionalContent,
+}: BtnProps) => {
   return (
     <button
-      type={isFormSubmit ? "submit" : "button"}
-      className={`${style}`}
-      onClick={isFormSubmit ? undefined : onClickFunction}
+      type={type}
+      className={styles[style]}
+      onClick={type ? undefined : onClickFunction}
     >
       {typeof content === "string"
         ? content
@@ -27,3 +37,5 @@ const PrimaryButton = (props: BtnProps) => {
 };
 
 export default PrimaryButton;
+
+//TODO: accedere dinamicamente agli stili

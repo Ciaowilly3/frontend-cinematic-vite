@@ -14,10 +14,9 @@ const LoginFormModal = ({ handleLoginFormVisibility }: LoginFormModalProps) => {
         onClickFunction={handleLoginFormVisibility}
         content={FaTimes}
         additionalContent={"close"}
-        style="btn btn-danger"
-        isFormSubmit={false}
+        style="danger"
       />
-      <LoginForm />
+      <LoginForm handleLoginFormVisibility={handleLoginFormVisibility} />
     </div>
   );
 };

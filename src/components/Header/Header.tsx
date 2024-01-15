@@ -21,7 +21,7 @@ const Header = () => {
         <div className="col-4">
           <div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
             <Link
-              to={"/AboutUs"}
+              to={"/about-us"}
               className="link-flush link-third text-my-secondary"
             >
               nav
