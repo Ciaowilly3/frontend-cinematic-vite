@@ -5,14 +5,18 @@ const styles = {
   danger: "btn btn-danger",
   success: "btn btn-success",
   circle: "rounded rounded-circle",
+  flush: "btn-flush",
 } as const;
+
+type Style = keyof typeof styles;
 
 type BtnProps = {
   onClickFunction?: () => void;
   content: string | IconType;
-  additionalContent: string | null;
-  style: keyof typeof styles;
+  additionalContent?: string | null;
+  style: Style;
   type?: "submit" | "button";
+  disable?: boolean;
 };
 
 const PrimaryButton = ({
@@ -21,21 +25,21 @@ const PrimaryButton = ({
   style,
   type = "button",
   additionalContent,
+  disable = false,
 }: BtnProps) => {
   return (
     <button
       type={type}
       className={styles[style]}
-      onClick={type ? undefined : onClickFunction}
+      disabled={disable}
+      onClick={onClickFunction}
     >
-      {typeof content === "string"
-        ? content
-        : React.createElement(content as IconType)}
-      {additionalContent}
+      {typeof content === "string" ? content : React.createElement(content)}
+      {additionalContent ?? ""}
     </button>
   );
 };
 
 export default PrimaryButton;
 
-//TODO: accedere dinamicamente agli stili
+//TODO: mettere Icon e content separati

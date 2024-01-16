@@ -4,6 +4,15 @@ import LoginFormModal from "../LoginFormModal";
 import cinematicLogo from "/cinematic-logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { PathsEnum } from "../../enums/priorityEnum";
+
+const mountedStyle = {
+  animation: "inAnimation 250ms ease-in",
+};
+const unmountedStyle = {
+  animation: "outAnimation 250ms ease-out",
+  animationFillMode: "forwards",
+};
 
 const Header = () => {
   const [isShownLogInForm, setIsShownLogInForm] = useState(false);
@@ -12,16 +21,21 @@ const Header = () => {
     setIsShownLogInForm(!isShownLogInForm);
   }, [isShownLogInForm]);
   return (
-    <div data-testid="header" className="container-fluid bg-my-primary">
+    <div data-testid="header" className="bg-my-primary container-fluid">
       {isShownLogInForm && (
-        <LoginFormModal handleLoginFormVisibility={handleLoginFormVisibility} />
+        <div
+          className="fade-in-element"
+          style={isShownLogInForm ? mountedStyle : unmountedStyle}
+        >
+          <LoginFormModal handleModalVisibility={handleLoginFormVisibility} />
+        </div>
       )}
 
       <div className="row">
         <div className="col-4">
           <div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
             <Link
-              to={"/about-us"}
+              to={PathsEnum.ABOUT_US}
               className="link-flush link-third text-my-secondary"
             >
               nav

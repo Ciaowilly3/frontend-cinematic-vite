@@ -1,5 +1,40 @@
+.logo-container {
+  overflow: hidden;
+}
+
 .logo-container img {
   width: 128px;
   display: block;
   margin: auto;
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.logo-container img:hover {
+  transform: rotate(360deg);
+}
+
+.fade-in-element {
+  height: fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

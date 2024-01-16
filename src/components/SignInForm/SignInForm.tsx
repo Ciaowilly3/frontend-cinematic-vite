@@ -1,18 +1,15 @@
 import { FaArrowRight } from "react-icons/fa";
 import PrimaryButton from "../PrimaryButton";
 import { Link } from "react-router-dom";
-import { useCallback } from "react";
 import { PathsEnum } from "../../enums/priorityEnum";
 
-interface LoginFormProps {
+interface SignInFormProps {
   handleModalVisibility: () => void;
 }
 
-const LoginForm = ({ handleModalVisibility }: LoginFormProps) => {
-  const handleSubmit = useCallback(() => {}, []);
-
+const SignInForm = ({ handleModalVisibility }: SignInFormProps) => {
   return (
-    <div className="login-form">
+    <div className="SignIn-form">
       <form action="">
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
@@ -25,6 +22,17 @@ const LoginForm = ({ handleModalVisibility }: LoginFormProps) => {
             placeholder="username"
           />
         </div>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            placeholder="Email"
+          />
+        </div>
 
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
@@ -34,7 +42,18 @@ const LoginForm = ({ handleModalVisibility }: LoginFormProps) => {
             type="password"
             className="form-control"
             id="password"
-            placeholder="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="role" className="form-label">
+            Role
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="role"
+            placeholder="Role"
           />
         </div>
         <Link to={PathsEnum.PRIVATE}>
@@ -51,4 +70,4 @@ const LoginForm = ({ handleModalVisibility }: LoginFormProps) => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;

@@ -16,6 +16,8 @@
   border: none;
   background: transparent;
   color: inherit;
+  font-weight: inherit;
+  padding: 0;
 }
 
 .btn-flush:hover {
@@ -56,6 +58,20 @@ a:visited {
 .text-my-secondary {
   color: var(--my-secondary);
 }
+
+.text-my-third {
+  color: var(--my-third);
+}
+
+.text-third-hover:hover {
+  color: var(--my-third);
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(#1a243a74);
+}
+
 .loader {
   width: 48px;
   height: 48px;

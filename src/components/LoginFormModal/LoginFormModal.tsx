@@ -2,23 +2,65 @@ import { FaTimes } from "react-icons/fa";
 import LoginForm from "../LoginForm/LoginForm";
 import PrimaryButton from "../PrimaryButton";
 import "./LoginFormModal.css";
+import { useCallback, useState } from "react";
+import SignInForm from "../SignInForm";
 
 interface LoginFormModalProps {
-  handleLoginFormVisibility: () => void;
+  handleModalVisibility: () => void;
 }
 
-const LoginFormModal = ({ handleLoginFormVisibility }: LoginFormModalProps) => {
+const LoginFormModal = ({ handleModalVisibility }: LoginFormModalProps) => {
+  const [isLoginForm, setIsLoginForm] = useState(true);
+
+  const handleFormSwitch = useCallback(() => {
+    setIsLoginForm(!isLoginForm);
+  }, [isLoginForm]);
   return (
-    <div className="form-modal border-my-primary shadow-lg p-2 bg-my-secondary">
-      <PrimaryButton
-        onClickFunction={handleLoginFormVisibility}
-        content={FaTimes}
-        additionalContent={"close"}
-        style="danger"
-      />
-      <LoginForm handleLoginFormVisibility={handleLoginFormVisibility} />
+    <div className="form-modal border-my-primary shadow-lg p-3 bg-my-secondary">
+      <div className="text-end mb-3">
+        <PrimaryButton
+          onClickFunction={handleModalVisibility}
+          content={FaTimes}
+          additionalContent={""}
+          style="danger"
+        />
+      </div>
+      <div className="d-flex justify-content-between">
+        <h2
+          className={`fw-bolder text-third-hover ${
+            isLoginForm ? "text-my-third" : "text-my-primary"
+          }`}
+        >
+          <PrimaryButton
+            content={"Login"}
+            style="flush"
+            onClickFunction={handleFormSwitch}
+            disable={isLoginForm ? true : undefined}
+          />
+        </h2>
+        <h2
+          className={`fw-bolder text-third-hover ${
+            isLoginForm ? "text-my-primary" : "text-my-third"
+          }`}
+        >
+          <PrimaryButton
+            content={"Sign-in"}
+            style="flush"
+            onClickFunction={handleFormSwitch}
+            disable={!isLoginForm ? true : undefined}
+          />
+        </h2>
+      </div>
+      {isLoginForm ? (
+        <LoginForm handleModalVisibility={handleModalVisibility} />
+      ) : (
+        <SignInForm handleModalVisibility={handleModalVisibility} />
+      )}
     </div>
   );
 };
 
 export default LoginFormModal;
+
+//TODO: fare il componente del solo modale
+//TODO: custom hook per nascondere la modale

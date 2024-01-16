@@ -8,10 +8,11 @@ import PrivateFilmsPage from "../pages/PrivateFilmsPage/PrivateFilmsPage";
 import PrivateActors from "../pages/PrivateActors";
 import PrivateMainLayout from "../Layouts/PrivateMainLayout";
 import MainLayout from "../Layouts/MainLayout.tsx/MainLayout";
+import { PathsEnum } from "../enums/priorityEnum";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: PathsEnum.HOME,
 
     element: (
       <MainLayout>
@@ -20,19 +21,19 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "*",
+        path: PathsEnum.NOT_FOUND,
         element: <NotFoundPage />,
       },
       {
-        path: "",
+        path: PathsEnum.HOME,
         element: <HomePage />,
       },
       {
-        path: "about-us",
+        path: PathsEnum.ABOUT_US,
         element: <AboutUsPage />,
       },
       {
-        path: "/private",
+        path: PathsEnum.PRIVATE,
         element: (
           <PrivateMainLayout>
             <PrivatePage />
@@ -40,11 +41,11 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            path: "films",
+            path: PathsEnum.PRIVATE_FILMS,
             element: <PrivateFilmsPage />,
           },
           {
-            path: "actors",
+            path: PathsEnum.PRIVATE_ACTORS,
             element: <PrivateActors />,
           },
         ],
@@ -53,6 +54,6 @@ export const router = createBrowserRouter([
   },
 ]);
 
-//TODO: form login e register
+//TODO: Enum per rotte
+//TODO: validazione dati nel form
 //TODO: fare chiamate post per i film
-//TODO: fare la logica di mostrare form login e slice per token dopo
