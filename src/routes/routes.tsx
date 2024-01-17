@@ -54,6 +54,5 @@ export const router = createBrowserRouter([
   },
 ]);
 
-//TODO: Enum per rotte
 //TODO: validazione dati nel form
 //TODO: fare chiamate post per i film

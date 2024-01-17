@@ -1,19 +1,20 @@
 import React from "react";
 import { IconType } from "react-icons";
+import { setButtonsStyle } from "../../utils/setButtonsStyle";
 
-const styles = {
+export const styles = {
   danger: "btn btn-danger",
   success: "btn btn-success",
-  circle: "rounded rounded-circle",
+  circle: "rounded rounded-circle ratio-1x1",
   flush: "btn-flush",
 } as const;
 
-type Style = keyof typeof styles;
+export type Style = (keyof typeof styles)[];
 
 type BtnProps = {
   onClickFunction?: () => void;
-  content: string | IconType;
-  additionalContent?: string | null;
+  icon?: IconType | undefined;
+  content?: string | null;
   style: Style;
   type?: "submit" | "button";
   disable?: boolean;
@@ -22,24 +23,22 @@ type BtnProps = {
 const PrimaryButton = ({
   onClickFunction,
   content,
+  icon,
   style,
   type = "button",
-  additionalContent,
   disable = false,
 }: BtnProps) => {
   return (
     <button
       type={type}
-      className={styles[style]}
+      className={`${setButtonsStyle(styles, style)}`}
       disabled={disable}
       onClick={onClickFunction}
     >
-      {typeof content === "string" ? content : React.createElement(content)}
-      {additionalContent ?? ""}
+      {icon && React.createElement(icon)}
+      {content ?? ""}
     </button>
   );
 };
 
 export default PrimaryButton;
-
-//TODO: mettere Icon e content separati

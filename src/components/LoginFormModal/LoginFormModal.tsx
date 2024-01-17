@@ -4,25 +4,24 @@ import PrimaryButton from "../PrimaryButton";
 import "./LoginFormModal.css";
 import { useCallback, useState } from "react";
 import SignInForm from "../SignInForm";
+import { useDispatch } from "react-redux";
+import { toggleFormModal } from "../../slices/auth/formModalSlice";
 
-interface LoginFormModalProps {
-  handleModalVisibility: () => void;
-}
-
-const LoginFormModal = ({ handleModalVisibility }: LoginFormModalProps) => {
+const LoginFormModal = () => {
+  const dispatch = useDispatch();
   const [isLoginForm, setIsLoginForm] = useState(true);
 
   const handleFormSwitch = useCallback(() => {
     setIsLoginForm(!isLoginForm);
   }, [isLoginForm]);
+
   return (
     <div className="form-modal border-my-primary shadow-lg p-3 bg-my-secondary">
       <div className="text-end mb-3">
         <PrimaryButton
-          onClickFunction={handleModalVisibility}
-          content={FaTimes}
-          additionalContent={""}
-          style="danger"
+          icon={FaTimes}
+          style={["danger", "circle"]}
+          onClickFunction={() => dispatch(toggleFormModal())}
         />
       </div>
       <div className="d-flex justify-content-between">
@@ -33,7 +32,7 @@ const LoginFormModal = ({ handleModalVisibility }: LoginFormModalProps) => {
         >
           <PrimaryButton
             content={"Login"}
-            style="flush"
+            style={["flush"]}
             onClickFunction={handleFormSwitch}
             disable={isLoginForm ? true : undefined}
           />
@@ -45,22 +44,17 @@ const LoginFormModal = ({ handleModalVisibility }: LoginFormModalProps) => {
         >
           <PrimaryButton
             content={"Sign-in"}
-            style="flush"
+            style={["flush"]}
             onClickFunction={handleFormSwitch}
             disable={!isLoginForm ? true : undefined}
           />
         </h2>
       </div>
-      {isLoginForm ? (
-        <LoginForm handleModalVisibility={handleModalVisibility} />
-      ) : (
-        <SignInForm handleModalVisibility={handleModalVisibility} />
-      )}
+      {isLoginForm ? <LoginForm /> : <SignInForm />}
     </div>
   );
 };
 
 export default LoginFormModal;
 
-//TODO: fare il componente del solo modale
 //TODO: custom hook per nascondere la modale
