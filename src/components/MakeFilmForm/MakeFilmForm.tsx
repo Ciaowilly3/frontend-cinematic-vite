@@ -41,13 +41,12 @@ const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
     shouldFocusError: true,
   });
 
-  const onSubmit: SubmitHandler<formFields> = (data) => {
-    console.log(data);
-    console.log("vediamo cos è " + second.data);
-    createUser(data)
+  const onSubmit: SubmitHandler<formFields> = async (data) => {
+    await createUser(data)
       .unwrap()
       .then(() => console.log("created"))
       .catch((e) => console.log(e));
+    console.log("vediamo cos è " + second);
     handleMakeFilmFormVisibility();
   };
 
