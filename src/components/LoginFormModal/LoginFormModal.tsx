@@ -56,5 +56,3 @@ const LoginFormModal = () => {
 };
 
 export default LoginFormModal;
-
-//TODO: custom hook per nascondere la modale

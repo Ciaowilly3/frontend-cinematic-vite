@@ -53,6 +53,3 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
-
-//TODO: validazione dati nel form
-//TODO: fare chiamate post per i film

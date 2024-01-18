@@ -3,6 +3,7 @@ import { BASE_URL } from "../cinema/api";
 import { makeNewFilm, retrieveAllFilms } from "./endpoints";
 
 export const filmApi = createApi({
+  tagTypes: ["films"],
   reducerPath: "filmsApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: () => ({}),

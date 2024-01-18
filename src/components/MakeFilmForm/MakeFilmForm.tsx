@@ -29,7 +29,7 @@ interface IProps {
 }
 
 const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
-  const [createUser, second] = useMakeNewFilmMutation();
+  const [createUser] = useMakeNewFilmMutation();
   const {
     register,
     handleSubmit,
@@ -46,7 +46,6 @@ const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
       .unwrap()
       .then(() => console.log("created"))
       .catch((e) => console.log(e));
-    console.log("vediamo cos è " + second);
     handleMakeFilmFormVisibility();
   };
 
