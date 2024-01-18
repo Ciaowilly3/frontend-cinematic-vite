@@ -5,6 +5,7 @@ import { setButtonsStyle } from "../../utils/setButtonsStyle";
 export const styles = {
   danger: "btn btn-danger",
   success: "btn btn-success",
+  primary: "btn btn-primary",
   circle: "rounded rounded-circle ratio-1x1",
   flush: "btn-flush",
 } as const;

@@ -7,23 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { toggleFormModal } from "../../slices/auth/formModalSlice";
-
-const schema = z
-  .object({
-    username: z.string().min(3, { message: "username must be 3 chars long" }),
-    email: z.string().email({ message: "must be a valid email" }),
-    password: z.string().min(8, { message: "password must be 8 chars long" }),
-    confirmPassword: z.string().min(8),
-  })
-  .superRefine(({ password, confirmPassword }, ctx) => {
-    if (password !== confirmPassword) {
-      ctx.addIssue({
-        message: "password must match",
-        code: z.ZodIssueCode.custom,
-        path: ["confirmPassword"],
-      });
-    }
-  });
+import { schema } from "./schema";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -53,7 +37,9 @@ const SignInForm = () => {
             placeholder="Username"
             {...register("username")}
           />
-          {errors.username && <p>{`${errors.username.message}`}</p>}
+          {errors.username && (
+            <p className="text-danger">{`${errors.username.message}`}</p>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
@@ -66,7 +52,9 @@ const SignInForm = () => {
             placeholder="Email"
             {...register("email")}
           />
-          {errors.email && <p>{`${errors.email.message}`}</p>}
+          {errors.email && (
+            <p className="text-danger">{`${errors.email.message}`}</p>
+          )}
         </div>
 
         <div className="mb-3">
@@ -80,7 +68,9 @@ const SignInForm = () => {
             placeholder="Password"
             {...register("password")}
           />
-          {errors.password && <p>{`${errors.password.message}`}</p>}
+          {errors.password && (
+            <p className="text-danger">{`${errors.password.message}`}</p>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="confirm-password" className="form-label">
@@ -94,7 +84,7 @@ const SignInForm = () => {
             {...register("confirmPassword")}
           />
           {errors.confirmPassword && (
-            <p>{`${errors.confirmPassword.message}`}</p>
+            <p className="text-danger">{`${errors.confirmPassword.message}`}</p>
           )}
         </div>
         <input type="submit" />
