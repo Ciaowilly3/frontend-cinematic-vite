@@ -1,27 +1,43 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { IconType } from "react-icons";
+import { setButtonsStyle } from "../../utils/setButtonsStyle";
+
+export const styles = {
+  danger: "btn btn-danger",
+  success: "btn btn-success",
+  primary: "btn btn-primary",
+  circle: "rounded rounded-circle ratio-1x1",
+  flush: "btn-flush",
+} as const;
+
+export type Style = (keyof typeof styles)[];
 
 type BtnProps = {
-  onClickFunction: MouseEventHandler<HTMLButtonElement> | undefined;
-  content: string | IconType;
-  additionalContent: string | null;
-  style: string;
-  isFormSubmit: boolean;
+  onClickFunction?: () => void;
+  icon?: IconType | undefined;
+  content?: string | null;
+  style: Style;
+  type?: "submit" | "button";
+  disable?: boolean;
 };
 
-const PrimaryButton = (props: BtnProps) => {
-  const { onClickFunction, content, style, isFormSubmit, additionalContent } =
-    props;
+const PrimaryButton = ({
+  onClickFunction,
+  content,
+  icon,
+  style,
+  type = "button",
+  disable = false,
+}: BtnProps) => {
   return (
     <button
-      type={isFormSubmit ? "submit" : "button"}
-      className={`${style}`}
-      onClick={isFormSubmit ? undefined : onClickFunction}
+      type={type}
+      className={`${setButtonsStyle(styles, style)}`}
+      disabled={disable}
+      onClick={onClickFunction}
     >
-      {typeof content === "string"
-        ? content
-        : React.createElement(content as IconType)}
-      {additionalContent}
+      {icon && React.createElement(icon)}
+      {content ?? ""}
     </button>
   );
 };

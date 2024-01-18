@@ -1,27 +1,20 @@
-import { useCallback, useState } from "react";
 import { FaSearch, FaUser } from "react-icons/fa";
-import LoginFormModal from "../LoginFormModal";
 import cinematicLogo from "/cinematic-logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { PathsEnum } from "../../enums/priorityEnum";
+import { useDispatch } from "react-redux";
+import { toggleFormModal } from "../../slices/auth/formModalSlice";
 
 const Header = () => {
-  const [isShownLogInForm, setIsShownLogInForm] = useState(false);
-
-  const handleLoginFormVisibility = useCallback(() => {
-    setIsShownLogInForm(!isShownLogInForm);
-  }, [isShownLogInForm]);
+  const dispatch = useDispatch();
   return (
-    <div data-testid="header" className="container-fluid bg-my-primary">
-      {isShownLogInForm && (
-        <LoginFormModal handleLoginFormVisibility={handleLoginFormVisibility} />
-      )}
-
+    <div data-testid="header" className="bg-my-primary container-fluid">
       <div className="row">
         <div className="col-4">
           <div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
             <Link
-              to={"/AboutUs"}
+              to={PathsEnum.ABOUT_US}
               className="link-flush link-third text-my-secondary"
             >
               nav
@@ -40,14 +33,13 @@ const Header = () => {
             <button
               type="button"
               className="btn-flush btn-third text-my-secondary"
-              onClick={handleLoginFormVisibility}
+              onClick={() => dispatch(toggleFormModal())}
             >
               <FaUser />
             </button>
             <button
               type="button"
               className="btn-flush btn-third text-my-secondary"
-              onClick={handleLoginFormVisibility}
             >
               <FaSearch />
             </button>

@@ -2,24 +2,59 @@ import { FaTimes } from "react-icons/fa";
 import LoginForm from "../LoginForm/LoginForm";
 import PrimaryButton from "../PrimaryButton";
 import "./LoginFormModal.css";
+import { useCallback, useState } from "react";
+import SignInForm from "../SignInForm";
+import { useDispatch } from "react-redux";
+import { toggleFormModal } from "../../slices/auth/formModalSlice";
 
-interface LoginFormModalProps {
-  handleLoginFormVisibility: () => void;
-}
+const LoginFormModal = () => {
+  const dispatch = useDispatch();
+  const [isLoginForm, setIsLoginForm] = useState(true);
 
-const LoginFormModal = ({ handleLoginFormVisibility }: LoginFormModalProps) => {
+  const handleFormSwitch = useCallback(() => {
+    setIsLoginForm(!isLoginForm);
+  }, [isLoginForm]);
+
   return (
-    <div className="form-modal border-my-primary shadow-lg p-2 bg-my-secondary">
-      <PrimaryButton
-        onClickFunction={handleLoginFormVisibility}
-        content={FaTimes}
-        additionalContent={"close"}
-        style="btn btn-danger"
-        isFormSubmit={false}
-      />
-      <LoginForm />
+    <div className="form-modal border-my-primary shadow-lg p-3 bg-my-secondary">
+      <div className="text-end mb-3">
+        <PrimaryButton
+          icon={FaTimes}
+          style={["danger", "circle"]}
+          onClickFunction={() => dispatch(toggleFormModal())}
+        />
+      </div>
+      <div className="d-flex justify-content-between">
+        <h2
+          className={`fw-bolder text-third-hover ${
+            isLoginForm ? "text-my-third" : "text-my-primary"
+          }`}
+        >
+          <PrimaryButton
+            content={"Login"}
+            style={["flush"]}
+            onClickFunction={handleFormSwitch}
+            disable={isLoginForm ? true : undefined}
+          />
+        </h2>
+        <h2
+          className={`fw-bolder text-third-hover ${
+            isLoginForm ? "text-my-primary" : "text-my-third"
+          }`}
+        >
+          <PrimaryButton
+            content={"Sign-in"}
+            style={["flush"]}
+            onClickFunction={handleFormSwitch}
+            disable={!isLoginForm ? true : undefined}
+          />
+        </h2>
+      </div>
+      {isLoginForm ? <LoginForm /> : <SignInForm />}
     </div>
   );
 };
 
 export default LoginFormModal;
+
+//TODO: custom hook per nascondere la modale

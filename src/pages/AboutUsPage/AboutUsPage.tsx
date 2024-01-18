@@ -1,11 +1,5 @@
-import MainLayout from "../../Layouts/MainLayout.tsx/MainLayout";
-
 const AboutUsPage = () => {
-  return (
-    <MainLayout>
-      <div>AboutUsPage</div>;
-    </MainLayout>
-  );
+  return <div>AboutUsPage</div>;
 };
 
 export default AboutUsPage;
