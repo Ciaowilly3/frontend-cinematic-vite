@@ -3,8 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMakeNewFilmMutation } from "../../services/film/api";
 import { PrimaryButton } from "..";
-import { FaPlus, FaTimes } from "react-icons/fa";
-import { renderToString } from "react-dom/server";
+import { FaTimes } from "react-icons/fa";
 
 const schema = z.object({
   coverImg: z
@@ -150,7 +149,7 @@ const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
           />
           <PrimaryButton
             onClickFunction={handleMakeFilmFormVisibility}
-            style={["danger"]}
+            style={["btnDanger"]}
             icon={FaTimes}
             content={"Close"}
           />

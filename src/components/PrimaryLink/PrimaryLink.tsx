@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
-import { PathsEnum } from "../../enums/priorityEnum";
-
-export const linkStyles = {
-  flush: "link-flush",
-  myPrimary: "text-my-primary",
-  mySecondary: "text-my-secondary",
-  myThird: "text-my-third",
-} as const;
-
-export type linkStyles = (keyof typeof linkStyles)[];
+import { PathsEnum } from "../../enums/PathsEnum";
+import {
+  Style,
+  setAtomicComponentStyle,
+  styles,
+} from "../../utils/setAtomicComponentStyle";
 
 interface ILinkProps {
-  path: keyof PathsEnum;
-  linkStyles: linkStyles;
+  path: PathsEnum;
+  content: string;
+  linkStyles: Style;
 }
 
-const PrimaryLink = ({path, linkStyles} : ILinkProps) => {
-  return;
-  <Link to={path} className= />;
+const PrimaryLink = ({ path, linkStyles, content }: ILinkProps) => {
+  return (
+    <Link to={path} className={setAtomicComponentStyle(styles, linkStyles)}>
+      {content}
+    </Link>
+  );
 };
 
 export default PrimaryLink;

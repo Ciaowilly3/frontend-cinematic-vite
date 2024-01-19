@@ -20,7 +20,7 @@ const LoginFormModal = () => {
       <div className="text-end mb-3">
         <PrimaryButton
           icon={FaTimes}
-          style={["danger", "circle"]}
+          style={["btnDanger", "circle"]}
           onClickFunction={() => dispatch(toggleFormModal())}
         />
       </div>
@@ -32,7 +32,7 @@ const LoginFormModal = () => {
         >
           <PrimaryButton
             content={"Login"}
-            style={["flush"]}
+            style={["btnFlush"]}
             onClickFunction={handleFormSwitch}
             disable={isLoginForm ? true : undefined}
           />
@@ -44,7 +44,7 @@ const LoginFormModal = () => {
         >
           <PrimaryButton
             content={"Sign-in"}
-            style={["flush"]}
+            style={["btnFlush"]}
             onClickFunction={handleFormSwitch}
             disable={!isLoginForm ? true : undefined}
           />

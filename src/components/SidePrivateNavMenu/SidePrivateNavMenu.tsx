@@ -1,11 +1,21 @@
-import { Link } from "react-router-dom";
-import { PathsEnum } from "../../enums/priorityEnum";
+import { PathsEnum } from "../../enums/PathsEnum";
+import PrimaryLink from "../PrimaryLink";
 
-const SidePrivateNavMenu = () => (
-  <div className="d-flex flex-column">
-    <Link to={PathsEnum.PRIVATE}>private area</Link>
-    <Link to={PathsEnum.PRIVATE_FILMS}>films area</Link>
-    <Link to={PathsEnum.PRIVATE_ACTORS}>actors area</Link>
-  </div>
-);
+const SidePrivateNavMenu = () => {
+  return (
+    <div className="d-flex flex-column">
+      {Object.entries(PathsEnum)
+        .filter(([key]) => key.startsWith("PRIVATE"))
+        .map(([key, value]) => (
+          <PrimaryLink
+            key={key}
+            path={value}
+            content={value.replace(/[^a-zA-Z\s]/g, "")}
+            linkStyles={["linkFlush", "txtMySecondary"]}
+          />
+        ))}
+    </div>
+  );
+};
+
 export default SidePrivateNavMenu;

@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
 import PrimaryButton from "../PrimaryButton";
 import { Link } from "react-router-dom";
-import { PathsEnum } from "../../enums/priorityEnum";
+import { PathsEnum } from "../../enums/PathsEnum";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -74,7 +74,7 @@ const LoginForm = () => {
             icon={FaArrowRight}
             content={"enter"}
             onClickFunction={() => dispatch(toggleFormModal())}
-            style={["success"]}
+            style={["btnSuccess"]}
             type={"submit"}
           ></PrimaryButton>
         </Link>
