@@ -1,11 +1,20 @@
 import { useCallback, useState } from "react";
 import { PrimaryButton } from "../../components";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTrash } from "react-icons/fa";
 import MakeFilmForm from "../../components/MakeFilmForm";
-import { useRetrieveAllFilmsQuery } from "../../services/film/api";
+import {
+  useDeleteFilmByIdMutation,
+  useRetrieveAllFilmsQuery,
+} from "../../services/film/api";
+import { FaPencil } from "react-icons/fa6";
+import { IFilm } from "../../interfaces/IFilm";
 
 const PrivateFilmsPage = () => {
   const [isMakeFormVisible, setIsMakeFormVisible] = useState(false);
+  const [filmToUpdate, setFilmToUpdate] = useState<IFilm | undefined>(
+    undefined
+  );
+  const [deleteFilm] = useDeleteFilmByIdMutation();
   const {
     data: films,
     isLoading,
@@ -15,12 +24,17 @@ const PrivateFilmsPage = () => {
   const handleMakeFilmFormVisibility = useCallback(() => {
     setIsMakeFormVisible(!isMakeFormVisible);
   }, [isMakeFormVisible]);
+  const handleEditFilmButtonClick = useCallback((film: IFilm) => {
+    setFilmToUpdate(film);
+    handleMakeFilmFormVisibility();
+  }, []);
   return (
     <div>
       <h3 className="text-my-primary">PrivateFilmPage</h3>
       {isMakeFormVisible ? (
         <MakeFilmForm
           handleMakeFilmFormVisibility={handleMakeFilmFormVisibility}
+          filmToUpdate={filmToUpdate}
         />
       ) : (
         <div>
@@ -37,7 +51,21 @@ const PrivateFilmsPage = () => {
             ) : (
               films?.map((film, index) => (
                 <ul key={index}>
-                  <li>{film.title}</li>
+                  <li>
+                    {film.title}{" "}
+                    <PrimaryButton
+                      onClickFunction={() => handleEditFilmButtonClick(film)}
+                      icon={FaPencil}
+                      content={"Edit"}
+                      style={["btnPrimary"]}
+                    />{" "}
+                    <PrimaryButton
+                      onClickFunction={() => deleteFilm(film.filmId)}
+                      icon={FaTrash}
+                      content={"Delete"}
+                      style={["btnDanger"]}
+                    />
+                  </li>
                 </ul>
               ))
             )}

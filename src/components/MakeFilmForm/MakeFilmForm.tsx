@@ -1,9 +1,14 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMakeNewFilmMutation } from "../../services/film/api";
+import {
+  useMakeNewFilmMutation,
+  useUpdateFilmByIdMutation,
+} from "../../services/film/api";
 import { PrimaryButton } from "..";
 import { FaTimes } from "react-icons/fa";
+import { IFilm } from "../../interfaces/IFilm";
+import { HTTP } from "../../enums/HttpMethodsEnum";
 
 const schema = z.object({
   coverImg: z
@@ -25,15 +30,37 @@ type formFields = z.infer<typeof schema>;
 
 interface IProps {
   handleMakeFilmFormVisibility: () => void;
+  filmToUpdate?: IFilm;
 }
 
-const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
-  const [createUser] = useMakeNewFilmMutation();
+const MakeFilmForm = ({
+  handleMakeFilmFormVisibility,
+  filmToUpdate,
+}: IProps) => {
+  const {
+    filmId: idToUpdate,
+    coverImg: oldCoverImg,
+    title: oldTitle,
+    nationOfProduction: oldNationOfProduction,
+    plot: oldPlot,
+    rating: oldRating,
+    funFacts: oldFunFacts,
+  } = filmToUpdate || {};
+  const [createFilm] = useMakeNewFilmMutation();
+  const [updateFilm] = useUpdateFilmByIdMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<formFields>({
+    defaultValues: {
+      coverImg: oldCoverImg,
+      title: oldTitle,
+      nationOfProduction: oldNationOfProduction,
+      plot: oldPlot,
+      rating: oldRating,
+      funFacts: oldFunFacts,
+    },
     resolver: zodResolver(schema),
     mode: "onChange",
     reValidateMode: "onChange",
@@ -41,7 +68,15 @@ const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
   });
 
   const onSubmit: SubmitHandler<formFields> = async (data) => {
-    await createUser(data)
+    if (!idToUpdate) {
+      await createFilm(data)
+        .unwrap()
+        .then((payload) => console.log(payload))
+        .catch((e) => console.log(e));
+      handleMakeFilmFormVisibility();
+      return;
+    }
+    await updateFilm({ id: idToUpdate, body: data })
       .unwrap()
       .then((payload) => console.log(payload))
       .catch((e) => console.log(e));
@@ -50,7 +85,10 @@ const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
 
   return (
     <div className="MakeFilmForm">
-      <form onSubmit={handleSubmit(onSubmit)} method="POST">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        method={filmToUpdate ? HTTP.PUT : HTTP.POST}
+      >
         <div className="mb-3">
           <label htmlFor="coverImg" className="form-label">
             Cover Image URL
