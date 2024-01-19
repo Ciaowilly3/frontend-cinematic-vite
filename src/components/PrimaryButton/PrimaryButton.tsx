@@ -1,16 +1,10 @@
 import React from "react";
 import { IconType } from "react-icons";
-import { setButtonsStyle } from "../../utils/setButtonsStyle";
-
-export const styles = {
-  danger: "btn btn-danger",
-  success: "btn btn-success",
-  primary: "btn btn-primary",
-  circle: "rounded rounded-circle ratio-1x1",
-  flush: "btn-flush",
-} as const;
-
-export type Style = (keyof typeof styles)[];
+import {
+  Style,
+  setAtomicComponentStyle,
+  styles,
+} from "../../utils/setAtomicComponentStyle";
 
 type IBtnProps = {
   onClickFunction?: () => void;
@@ -32,7 +26,7 @@ const PrimaryButton = ({
   return (
     <button
       type={type}
-      className={`${setButtonsStyle(styles, style)}`}
+      className={`${setAtomicComponentStyle(styles, style)}`}
       disabled={disable}
       onClick={onClickFunction}
     >

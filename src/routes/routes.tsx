@@ -8,7 +8,7 @@ import PrivateFilmsPage from "../pages/PrivateFilmsPage/PrivateFilmsPage";
 import PrivateActors from "../pages/PrivateActors";
 import PrivateMainLayout from "../Layouts/PrivateMainLayout";
 import MainLayout from "../Layouts/MainLayout.tsx/MainLayout";
-import { PathsEnum } from "../enums/priorityEnum";
+import { PathsEnum } from "../enums/PathsEnum";
 
 export const router = createBrowserRouter([
   {

@@ -28,7 +28,7 @@ const PrivateFilmsPage = () => {
             onClickFunction={handleMakeFilmFormVisibility}
             icon={FaPlus}
             content={"make a film"}
-            style={["primary"]}
+            style={["btnPrimary"]}
           />
           <div>
             {isError && <span className="text-red fs-1">ERROR</span>}
