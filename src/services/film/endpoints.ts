@@ -1,6 +1,6 @@
 import { HTTP } from "../../enums/HttpMethodsEnum";
 import { Routes } from "../../enums/routesEnums";
-import { IFilm, IFilms } from "../../interfaces/IFilm";
+import { IFilm, IFilmDto, IFilms } from "../../interfaces/IFilm";
 import { customBuilder } from "../utils";
 
 const retrieveAllFilms = (builder: customBuilder) =>
@@ -9,7 +9,7 @@ const retrieveAllFilms = (builder: customBuilder) =>
     providesTags: ["films"],
   });
 const makeNewFilm = (builder: customBuilder) =>
-  builder.mutation<IFilm, IFilm>({
+  builder.mutation<IFilm, IFilmDto>({
     query: (body) => ({
       url: Routes.films,
       method: HTTP.POST,
@@ -17,7 +17,23 @@ const makeNewFilm = (builder: customBuilder) =>
     }),
     invalidatesTags: ["films"],
   });
-export { retrieveAllFilms, makeNewFilm };
+const updateFilmById = (builder: customBuilder) =>
+  builder.mutation<IFilm, { id: string; body: IFilmDto }>({
+    query: ({ id, body }) => ({
+      url: `${Routes.films}/update-film/${id}`,
+      method: HTTP.PUT,
+      body: body,
+    }),
+    invalidatesTags: ["films"],
+  });
+const deleteFilmById = (builder: customBuilder) =>
+  builder.mutation<void, string>({
+    query: (id) => ({
+      url: `${Routes.films}/delete-film/${id}`,
+      method: HTTP.DELETE,
+    }),
+    invalidatesTags: ["films"],
+  });
+export { retrieveAllFilms, makeNewFilm, updateFilmById, deleteFilmById };
 
-//TODO: componente links
 //TODO: finire le crud per film

@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../cinema/api";
-import { makeNewFilm, retrieveAllFilms } from "./endpoints";
+import {
+  deleteFilmById,
+  makeNewFilm,
+  retrieveAllFilms,
+  updateFilmById,
+} from "./endpoints";
 
 export const filmApi = createApi({
   tagTypes: ["films"],
@@ -11,7 +16,14 @@ export const filmApi = createApi({
   endpoints: (builder) => ({
     retrieveAllFilms: retrieveAllFilms(builder),
     makeNewFilm: makeNewFilm(builder),
+    updateFilmById: updateFilmById(builder),
+    deleteFilmById: deleteFilmById(builder),
   }),
 });
 
-export const { useRetrieveAllFilmsQuery, useMakeNewFilmMutation } = filmApi;
+export const {
+  useRetrieveAllFilmsQuery,
+  useMakeNewFilmMutation,
+  useUpdateFilmByIdMutation,
+  useDeleteFilmByIdMutation,
+} = filmApi;
