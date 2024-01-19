@@ -12,7 +12,7 @@ export const styles = {
 
 export type Style = (keyof typeof styles)[];
 
-type BtnProps = {
+type IBtnProps = {
   onClickFunction?: () => void;
   icon?: IconType | undefined;
   content?: string | null;
@@ -28,7 +28,7 @@ const PrimaryButton = ({
   style,
   type = "button",
   disable = false,
-}: BtnProps) => {
+}: IBtnProps) => {
   return (
     <button
       type={type}
