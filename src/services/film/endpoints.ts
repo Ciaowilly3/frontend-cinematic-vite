@@ -6,6 +6,7 @@ import { customBuilder } from "../utils";
 const retrieveAllFilms = (builder: customBuilder) =>
   builder.query<IFilms, void>({
     query: () => Routes.films,
+    providesTags: ["films"],
   });
 const makeNewFilm = (builder: customBuilder) =>
   builder.mutation<IFilm, IFilm>({
@@ -17,3 +18,6 @@ const makeNewFilm = (builder: customBuilder) =>
     invalidatesTags: ["films"],
   });
 export { retrieveAllFilms, makeNewFilm };
+
+//TODO: componente links
+//TODO: finire le crud per film

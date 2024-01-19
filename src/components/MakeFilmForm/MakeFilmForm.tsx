@@ -1,9 +1,10 @@
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback } from "react";
-import { filmApi, useMakeNewFilmMutation } from "../../services/film/api";
-import { IFilm } from "../../interfaces/IFilm";
+import { useMakeNewFilmMutation } from "../../services/film/api";
+import { PrimaryButton } from "..";
+import { FaPlus, FaTimes } from "react-icons/fa";
+import { renderToString } from "react-dom/server";
 
 const schema = z.object({
   coverImg: z
@@ -17,8 +18,7 @@ const schema = z.object({
   rating: z.coerce
     .number()
     .min(0)
-    .max(5, { message: "Il rating deve essere compreso tra 0 e 5" })
-    .default(0),
+    .max(5, { message: "Il rating deve essere compreso tra 0 e 5" }),
   funFacts: z.string(),
 });
 
@@ -44,7 +44,7 @@ const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
   const onSubmit: SubmitHandler<formFields> = async (data) => {
     await createUser(data)
       .unwrap()
-      .then(() => console.log("created"))
+      .then((payload) => console.log(payload))
       .catch((e) => console.log(e));
     handleMakeFilmFormVisibility();
   };
@@ -142,7 +142,19 @@ const MakeFilmForm = ({ handleMakeFilmFormVisibility }: IProps) => {
             <p className="text-danger">{`${errors.funFacts.message}`}</p>
           )}
         </div>
-        <input type="submit" className="btn btn-success" />
+        <div className="d-flex justify-content-between">
+          <input
+            type="submit"
+            value="&#43;Create"
+            className="btn btn-success"
+          />
+          <PrimaryButton
+            onClickFunction={handleMakeFilmFormVisibility}
+            style={["danger"]}
+            icon={FaTimes}
+            content={"Close"}
+          />
+        </div>
       </form>
     </div>
   );
