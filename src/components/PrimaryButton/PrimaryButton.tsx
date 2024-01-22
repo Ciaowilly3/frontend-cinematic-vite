@@ -1,16 +1,25 @@
 import React from "react";
 import { IconType } from "react-icons";
-import {
-  Style,
-  setAtomicComponentStyle,
-  styles,
-} from "../../utils/setAtomicComponentStyle";
+import { setAtomicComponentStyle } from "../../utils/setAtomicComponentStyle";
+
+const BtnStyles = {
+  btnFlush: "btn-flush",
+  txtMyPrimary: "text-my-primary",
+  txtMySecondary: "text-my-secondary",
+  txtMyThird: "text-my-third",
+  btnDanger: "btn btn-danger",
+  btnSuccess: "btn btn-success",
+  btnPrimary: "btn btn-primary",
+  circle: "rounded rounded-circle ratio-1x1",
+};
+
+export type BtnStyles = (keyof typeof BtnStyles)[];
 
 type IBtnProps = {
   onClickFunction?: () => void;
   icon?: IconType | undefined;
   content?: string | null;
-  style: Style;
+  style: BtnStyles;
   type?: "submit" | "button";
   disable?: boolean;
 };
@@ -26,7 +35,7 @@ const PrimaryButton = ({
   return (
     <button
       type={type}
-      className={`${setAtomicComponentStyle(styles, style)}`}
+      className={`${setAtomicComponentStyle(BtnStyles, style)}`}
       disabled={disable}
       onClick={onClickFunction}
     >

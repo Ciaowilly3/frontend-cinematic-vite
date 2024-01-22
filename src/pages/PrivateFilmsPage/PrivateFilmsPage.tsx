@@ -21,13 +21,14 @@ const PrivateFilmsPage = () => {
     isFetching,
     isError,
   } = useRetrieveAllFilmsQuery();
-  const handleMakeFilmFormVisibility = useCallback(() => {
-    setIsMakeFormVisible(!isMakeFormVisible);
-  }, [isMakeFormVisible]);
-  const handleEditFilmButtonClick = useCallback((film: IFilm) => {
-    setFilmToUpdate(film);
-    handleMakeFilmFormVisibility();
-  }, []);
+
+  const handleMakeFilmFormVisibility = useCallback(
+    (film?: IFilm) => {
+      film ? setFilmToUpdate(film) : setFilmToUpdate(undefined);
+      setIsMakeFormVisible(!isMakeFormVisible);
+    },
+    [isMakeFormVisible]
+  );
   return (
     <div>
       <h3 className="text-my-primary">PrivateFilmPage</h3>
@@ -54,7 +55,7 @@ const PrivateFilmsPage = () => {
                   <li>
                     {film.title}{" "}
                     <PrimaryButton
-                      onClickFunction={() => handleEditFilmButtonClick(film)}
+                      onClickFunction={() => handleMakeFilmFormVisibility(film)}
                       icon={FaPencil}
                       content={"Edit"}
                       style={["btnPrimary"]}

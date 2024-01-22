@@ -9,26 +9,9 @@ import { PrimaryButton } from "..";
 import { FaTimes } from "react-icons/fa";
 import { IFilm } from "../../interfaces/IFilm";
 import { HTTP } from "../../enums/HttpMethodsEnum";
+import { formFields, schema } from "./schema";
 
-const schema = z.object({
-  coverImg: z
-    .string()
-    .url({ message: "Inserisci un URL valido per l'immagine di copertina" }),
-  title: z.string().min(1, { message: "Il titolo del film è obbligatorio" }),
-  nationOfProduction: z
-    .string()
-    .min(1, { message: "nation of production is mandatory" }),
-  plot: z.string().min(1, { message: "plot is mandatory" }),
-  rating: z.coerce
-    .number()
-    .min(0)
-    .max(5, { message: "Il rating deve essere compreso tra 0 e 5" }),
-  funFacts: z.string(),
-});
-
-type formFields = z.infer<typeof schema>;
-
-interface IProps {
+export interface IFilmFormProps {
   handleMakeFilmFormVisibility: () => void;
   filmToUpdate?: IFilm;
 }
@@ -36,7 +19,7 @@ interface IProps {
 const MakeFilmForm = ({
   handleMakeFilmFormVisibility,
   filmToUpdate,
-}: IProps) => {
+}: IFilmFormProps) => {
   const {
     filmId: idToUpdate,
     coverImg: oldCoverImg,
@@ -45,9 +28,11 @@ const MakeFilmForm = ({
     plot: oldPlot,
     rating: oldRating,
     funFacts: oldFunFacts,
-  } = filmToUpdate || {};
+  } = filmToUpdate ?? {};
+
   const [createFilm] = useMakeNewFilmMutation();
   const [updateFilm] = useUpdateFilmByIdMutation();
+
   const {
     register,
     handleSubmit,
@@ -182,7 +167,7 @@ const MakeFilmForm = ({
         <div className="d-flex justify-content-between">
           <input
             type="submit"
-            value="&#43;Create"
+            value={filmToUpdate ? "Edit" : "Create"}
             className="btn btn-success"
           />
           <PrimaryButton
@@ -198,3 +183,5 @@ const MakeFilmForm = ({
 };
 
 export default MakeFilmForm;
+
+//TODO: componente inputs

@@ -16,7 +16,7 @@ const Header = () => {
           <div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
             <PrimaryLink
               path={PathsEnum.ABOUT_US}
-              linkStyles={["txtMyThird", "linkFlush"]}
+              style={["txtMyThird", "linkFlush"]}
               content="About Us"
             />
           </div>

@@ -35,5 +35,3 @@ const deleteFilmById = (builder: customBuilder) =>
     invalidatesTags: ["films"],
   });
 export { retrieveAllFilms, makeNewFilm, updateFilmById, deleteFilmById };
-
-//TODO: finire le crud per film

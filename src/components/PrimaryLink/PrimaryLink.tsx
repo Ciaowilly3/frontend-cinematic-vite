@@ -1,22 +1,30 @@
 import { Link } from "react-router-dom";
 import { PathsEnum } from "../../enums/PathsEnum";
-import {
-  Style,
-  setAtomicComponentStyle,
-  styles,
-} from "../../utils/setAtomicComponentStyle";
+import { setAtomicComponentStyle } from "../../utils/setAtomicComponentStyle";
+import "./PrimaryLink.css";
+
+const linkStyles = {
+  linkFlush: "link-flush",
+  txtMyPrimary: "text-my-primary",
+  txtMySecondary: "text-my-secondary",
+  txtMyThird: "text-my-third",
+};
+
+export type linkStyles = (keyof typeof linkStyles)[];
 
 interface ILinkProps {
   path: PathsEnum;
   content: string;
-  linkStyles: Style;
+  style: linkStyles;
 }
 
-const PrimaryLink = ({ path, linkStyles, content }: ILinkProps) => {
+const PrimaryLink = ({ path, style, content }: ILinkProps) => {
   return (
-    <Link to={path} className={setAtomicComponentStyle(styles, linkStyles)}>
-      {content}
-    </Link>
+    <div className="link-container p-2 rounded rounded-2">
+      <Link to={path} className={setAtomicComponentStyle(linkStyles, style)}>
+        {content.charAt(0).toUpperCase() + content.slice(1)}
+      </Link>
+    </div>
   );
 };
 

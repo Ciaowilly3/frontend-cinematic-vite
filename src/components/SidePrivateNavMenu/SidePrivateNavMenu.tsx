@@ -11,7 +11,7 @@ const SidePrivateNavMenu = () => {
             key={key}
             path={value}
             content={value.replace(/[^a-zA-Z\s]/g, "")}
-            linkStyles={["linkFlush", "txtMySecondary"]}
+            style={["linkFlush", "txtMySecondary"]}
           />
         ))}
     </div>
