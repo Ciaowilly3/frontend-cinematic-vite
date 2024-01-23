@@ -34,13 +34,15 @@ const PrivateFilmsPage = () => {
       <h3 className="text-my-primary">PrivateFilmPage</h3>
       {isMakeFormVisible ? (
         <MakeFilmForm
-          handleMakeFilmFormVisibility={handleMakeFilmFormVisibility}
+          handleMakeFilmFormVisibility={() =>
+            handleMakeFilmFormVisibility(undefined)
+          }
           filmToUpdate={filmToUpdate}
         />
       ) : (
         <div>
           <PrimaryButton
-            onClickFunction={handleMakeFilmFormVisibility}
+            onClickFunction={() => handleMakeFilmFormVisibility(undefined)}
             icon={FaPlus}
             content={"make a film"}
             style={["btnPrimary"]}
@@ -50,8 +52,8 @@ const PrivateFilmsPage = () => {
             {isFetching || isLoading ? (
               <span className="loader"></span>
             ) : (
-              films?.map((film, index) => (
-                <ul key={index}>
+              films?.map((film) => (
+                <ul key={film.filmId}>
                   <li>
                     {film.title}{" "}
                     <PrimaryButton
