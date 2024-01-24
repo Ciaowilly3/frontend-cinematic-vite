@@ -2,100 +2,62 @@ import { FaArrowRight } from "react-icons/fa";
 import PrimaryButton from "../PrimaryButton";
 import { Link } from "react-router-dom";
 import { PathsEnum } from "../../enums/PathsEnum";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { toggleFormModal } from "../../slices/auth/formModalSlice";
-import { schema } from "./schema";
+import { formFields, schema, signInFormFields } from "./schema";
+import FormInput from "../FormInputs/FormInput";
+import _ from "lodash";
+import { useRegisterMutation } from "../../services/auth/login/api";
+import { IRegisterUser } from "../../interfaces/IUser";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const [signin] = useRegisterMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<formFields>({
     resolver: zodResolver(schema),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
   });
 
+  const onSubmit: SubmitHandler<formFields> = async (data) => {
+    const newUser: IRegisterUser = {
+      ...data,
+      cinemaId: 1,
+      role: "ROLE_USER",
+    };
+    await signin(newUser)
+      .unwrap()
+      .then((payload) => {
+        console.log(payload);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   return (
     <div className="SignIn-form">
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            placeholder="Username"
-            {...register("username")}
+      <form method="POST" onSubmit={handleSubmit(onSubmit)}>
+        {signInFormFields.map((field) => (
+          <FormInput
+            key={_.uniqueId()}
+            type={field.type}
+            style={field.style}
+            id={field.id}
+            placeholder={field.placeholder}
+            label={field.label}
+            error={errors[field.name]}
+            register={register}
           />
-          {errors.username && (
-            <p className="text-danger">{`${errors.username.message}`}</p>
-          )}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            placeholder="Email"
-            {...register("email")}
-          />
-          {errors.email && (
-            <p className="text-danger">{`${errors.email.message}`}</p>
-          )}
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            placeholder="Password"
-            {...register("password")}
-          />
-          {errors.password && (
-            <p className="text-danger">{`${errors.password.message}`}</p>
-          )}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="confirm-password" className="form-label">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="confirm-password"
-            placeholder="Confirm Password"
-            {...register("confirmPassword")}
-          />
-          {errors.confirmPassword && (
-            <p className="text-danger">{`${errors.confirmPassword.message}`}</p>
-          )}
-        </div>
-        <input type="submit" />
-        <Link to={PathsEnum.PRIVATE}>
-          <PrimaryButton
-            icon={FaArrowRight}
-            content={"Entra"}
-            onClickFunction={() => dispatch(toggleFormModal())}
-            style={["btnSuccess"]}
-            type={"submit"}
-          ></PrimaryButton>
-        </Link>
+        ))}
+        <input type="submit" value={"Signin"} className="btn btn-primary" />
       </form>
     </div>
   );

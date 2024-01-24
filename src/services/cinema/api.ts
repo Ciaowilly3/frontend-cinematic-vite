@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { retrieveAllCinema } from "./endpoints";
-
-export const BASE_URL: string = "http://localhost:8080/";
+import { BASE_URL } from "../utils";
 
 export const cinemaApi = createApi({
   reducerPath: "cinemaApi",

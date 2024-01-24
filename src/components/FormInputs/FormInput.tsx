@@ -1,6 +1,6 @@
 import React from "react";
 import { setAtomicComponentStyle } from "../../utils/setAtomicComponentStyle";
-import { FieldError } from "react-hook-form";
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 
 const FormInputStyle = {
   formControl: "form-control",
@@ -14,8 +14,9 @@ type FormInputProps = {
   id: string;
   placeholder: string;
   label: string;
-  error: FieldError | undefined;
+  error: FieldError | undefined | Merge<FieldError, FieldErrorsImpl<any>>;
   register: any;
+  step?: number;
 };
 
 const FormInput = ({
@@ -26,6 +27,7 @@ const FormInput = ({
   label,
   error,
   register,
+  step,
 }: FormInputProps) => {
   return (
     <div className="mb-3">
@@ -38,6 +40,7 @@ const FormInput = ({
         id={id}
         placeholder={placeholder}
         {...register(id)}
+        step={step}
       />
       {error && <p className="text-danger">{`${error.message}`}</p>}
     </div>

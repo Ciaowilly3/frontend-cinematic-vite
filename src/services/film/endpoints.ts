@@ -1,7 +1,25 @@
+import {
+  BaseQueryFn,
+  EndpointBuilder,
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+} from "@reduxjs/toolkit/query";
 import { HTTP } from "../../enums/HttpMethodsEnum";
 import { Routes } from "../../enums/routesEnums";
 import { IFilm, IFilmDto, IFilms } from "../../interfaces/IFilm";
-import { customBuilder } from "../utils";
+
+type customBuilder = EndpointBuilder<
+  BaseQueryFn<
+    string | FetchArgs,
+    unknown,
+    FetchBaseQueryError,
+    {},
+    FetchBaseQueryMeta
+  >,
+  "films",
+  "filmsApi"
+>;
 
 const retrieveAllFilms = (builder: customBuilder) =>
   builder.query<IFilms, void>({

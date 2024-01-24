@@ -30,14 +30,14 @@ const PrivateFilmsPage = () => {
       <h3 className="text-my-primary">PrivateFilmPage</h3>
       {isFormVisible ? (
         <FilmForm
-          handleFilmFormVisibility={handleFilmFormVisibility}
+          handleFilmFormVisibility={() => handleFilmFormVisibility(undefined)}
           filmToUpdate={filmToUpdate}
         />
       ) : (
         <div>
           <div className="my-3">
             <PrimaryButton
-              onClickFunction={handleFilmFormVisibility}
+              onClickFunction={() => handleFilmFormVisibility(undefined)}
               icon={FaPlus}
               content={"Create a film"}
               style={["btnPrimary"]}

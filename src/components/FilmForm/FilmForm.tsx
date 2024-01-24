@@ -78,6 +78,7 @@ const FilmForm = ({
         {filmFormFields.map((field) => (
           <FormInput
             key={_.uniqueId()}
+            step={field.step ?? undefined}
             type={field.type}
             style={field.style}
             id={field.id}

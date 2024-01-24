@@ -57,7 +57,7 @@ export const filmFormFields: IFormFields<formFields> = [
     label: "Rating",
     id: "rating",
     type: "number",
-    step: "0.1",
+    step: 0.1,
     placeholder: "Valutazione del film (0-5)",
     style: ["formControl"],
   },
