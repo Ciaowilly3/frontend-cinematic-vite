@@ -2,16 +2,11 @@ import { FaArrowRight } from "react-icons/fa";
 import PrimaryButton from "../PrimaryButton";
 import { Link } from "react-router-dom";
 import { PathsEnum } from "../../enums/PathsEnum";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { toggleFormModal } from "../../slices/auth/formModalSlice";
-
-const schema = z.object({
-  username: z.string().min(3, { message: "at least 3 chars for username" }),
-  password: z.string().min(8, "Password must have at least 8 chars"),
-});
+import { formFields, schema } from "./schema";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -19,16 +14,20 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<formFields>({
     resolver: zodResolver(schema),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
   });
 
+  const onSubmit: SubmitHandler<formFields> = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="login-form">
-      <form action="" onSubmit={handleSubmit((data) => console.log(data))}>
+      <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label
             htmlFor="username"
@@ -68,16 +67,7 @@ const LoginForm = () => {
             <p className="text-danger">{`${errors.password.message}`}</p>
           )}
         </div>
-        <input type="submit" />
-        <Link to={PathsEnum.PRIVATE}>
-          <PrimaryButton
-            icon={FaArrowRight}
-            content={"enter"}
-            onClickFunction={() => dispatch(toggleFormModal())}
-            style={["btnSuccess"]}
-            type={"submit"}
-          ></PrimaryButton>
-        </Link>
+        <input type="submit" value={"Login"} className="btn btn-primary" />
       </form>
     </div>
   );

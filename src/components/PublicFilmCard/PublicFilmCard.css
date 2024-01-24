@@ -1,0 +1,55 @@
+.film-card {
+  perspective: 1000px;
+}
+
+.card {
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.film-card:hover .card {
+  transform: rotateY(180deg);
+}
+
+.card-content {
+  width: 100%;
+  position: relative;
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-front img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: #f0f0f0;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+}
+
+.film-card:hover .card-back {
+  backface-visibility: visible;
+
+  opacity: 1;
+}
+
+.film-card:hover .card-front {
+  backface-visibility: visible;
+  opacity: 0;
+}

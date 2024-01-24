@@ -94,6 +94,10 @@ a:visited {
   border-radius: 50%;
   background: #263238;
 }
+.fade-in-element {
+  z-index: 1;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
