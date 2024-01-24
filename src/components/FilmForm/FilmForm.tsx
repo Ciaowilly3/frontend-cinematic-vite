@@ -9,15 +9,16 @@ import { FaTimes } from "react-icons/fa";
 import { IFilm } from "../../interfaces/IFilm";
 import { HTTP } from "../../enums/HttpMethodsEnum";
 import { filmFormFields, formFields, schema } from "./schema";
+import * as _ from "lodash";
 import FormInput from "../FormInputs/FormInput";
 
 export interface IFilmFormProps {
-  handleMakeFilmFormVisibility: () => void;
+  handleFilmFormVisibility: () => void;
   filmToUpdate?: IFilm;
 }
 
-const MakeFilmForm = ({
-  handleMakeFilmFormVisibility,
+const FilmForm = ({
+  handleFilmFormVisibility,
   filmToUpdate,
 }: IFilmFormProps) => {
   const {
@@ -58,25 +59,25 @@ const MakeFilmForm = ({
         .unwrap()
         .then((payload) => console.log(payload))
         .catch((e) => console.log(e));
-      handleMakeFilmFormVisibility();
+      handleFilmFormVisibility();
       return;
     }
     await updateFilm({ id: idToUpdate, body: data })
       .unwrap()
       .then((payload) => console.log(payload))
       .catch((e) => console.log(e));
-    handleMakeFilmFormVisibility();
+    handleFilmFormVisibility();
   };
 
   return (
-    <div className="MakeFilmForm">
+    <div className="FilmForm">
       <form
         onSubmit={handleSubmit(onSubmit)}
         method={filmToUpdate ? HTTP.PUT : HTTP.POST}
       >
-        {filmFormFields.map((field, index) => (
+        {filmFormFields.map((field) => (
           <FormInput
-            key={index}
+            key={_.uniqueId()}
             type={field.type}
             style={field.style}
             id={field.id}
@@ -93,7 +94,7 @@ const MakeFilmForm = ({
             className="btn btn-success"
           />
           <PrimaryButton
-            onClickFunction={handleMakeFilmFormVisibility}
+            onClickFunction={handleFilmFormVisibility}
             style={["btnDanger"]}
             icon={FaTimes}
             content={"Close"}
@@ -104,6 +105,4 @@ const MakeFilmForm = ({
   );
 };
 
-export default MakeFilmForm;
-
-//TODO: componente inputs
+export default FilmForm;

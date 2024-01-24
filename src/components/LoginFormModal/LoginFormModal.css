@@ -3,4 +3,5 @@
   width: 600px;
   right: calc(50% - 300px);
   top: 25%;
+  z-index: 1;
 }

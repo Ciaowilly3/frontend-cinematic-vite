@@ -1,11 +1,11 @@
 import { render, fireEvent } from "@testing-library/react";
-import MakeFilmForm from "./index";
-import { IFilmFormProps } from "./MakeFilmForm";
+import FilmForm from "./index";
+import { IFilmFormProps } from "./FilmForm";
 
 describe("Film Form", () => {
   test("", () => {
     const prop: IFilmFormProps = {
-      handleMakeFilmFormVisibility: jest.fn(),
+      handleFilmFormVisibility: jest.fn(),
     } as const;
     // const { form } = render(<MakeFilmForm {...prop}/>);
   });

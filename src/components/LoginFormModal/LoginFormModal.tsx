@@ -12,8 +12,8 @@ const LoginFormModal = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
 
   const handleFormSwitch = useCallback(() => {
-    setIsLoginForm(!isLoginForm);
-  }, [isLoginForm]);
+    setIsLoginForm((prev) => !prev);
+  }, []);
 
   return (
     <div className="form-modal border-my-primary shadow-lg p-3 bg-my-secondary">

@@ -1,20 +1,16 @@
 import { useCallback, useState } from "react";
 import { PrimaryButton } from "../../components";
-import { FaPlus, FaTrash } from "react-icons/fa";
-import MakeFilmForm from "../../components/MakeFilmForm";
-import {
-  useDeleteFilmByIdMutation,
-  useRetrieveAllFilmsQuery,
-} from "../../services/film/api";
-import { FaPencil } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa";
+import FilmForm from "../../components/FilmForm";
+import { useRetrieveAllFilmsQuery } from "../../services/film/api";
 import { IFilm } from "../../interfaces/IFilm";
+import PrivateFilmCard from "../../components/PrivateFilmCard";
 
 const PrivateFilmsPage = () => {
-  const [isMakeFormVisible, setIsMakeFormVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const [filmToUpdate, setFilmToUpdate] = useState<IFilm | undefined>(
     undefined
   );
-  const [deleteFilm] = useDeleteFilmByIdMutation();
   const {
     data: films,
     isLoading,
@@ -22,54 +18,44 @@ const PrivateFilmsPage = () => {
     isError,
   } = useRetrieveAllFilmsQuery();
 
-  const handleMakeFilmFormVisibility = useCallback(
+  const handleFilmFormVisibility = useCallback(
     (film?: IFilm) => {
       film ? setFilmToUpdate(film) : setFilmToUpdate(undefined);
-      setIsMakeFormVisible(!isMakeFormVisible);
+      setIsFormVisible(!isFormVisible);
     },
-    [isMakeFormVisible]
+    [isFormVisible]
   );
   return (
     <div>
       <h3 className="text-my-primary">PrivateFilmPage</h3>
-      {isMakeFormVisible ? (
-        <MakeFilmForm
-          handleMakeFilmFormVisibility={() =>
-            handleMakeFilmFormVisibility(undefined)
-          }
+      {isFormVisible ? (
+        <FilmForm
+          handleFilmFormVisibility={handleFilmFormVisibility}
           filmToUpdate={filmToUpdate}
         />
       ) : (
         <div>
-          <PrimaryButton
-            onClickFunction={() => handleMakeFilmFormVisibility(undefined)}
-            icon={FaPlus}
-            content={"make a film"}
-            style={["btnPrimary"]}
-          />
+          <div className="my-3">
+            <PrimaryButton
+              onClickFunction={handleFilmFormVisibility}
+              icon={FaPlus}
+              content={"Create a film"}
+              style={["btnPrimary"]}
+            />
+          </div>
           <div>
             {isError && <span className="text-red fs-1">ERROR</span>}
             {isFetching || isLoading ? (
               <span className="loader"></span>
             ) : (
               films?.map((film) => (
-                <ul key={film.filmId}>
-                  <li>
-                    {film.title}{" "}
-                    <PrimaryButton
-                      onClickFunction={() => handleMakeFilmFormVisibility(film)}
-                      icon={FaPencil}
-                      content={"Edit"}
-                      style={["btnPrimary"]}
-                    />{" "}
-                    <PrimaryButton
-                      onClickFunction={() => deleteFilm(film.filmId)}
-                      icon={FaTrash}
-                      content={"Delete"}
-                      style={["btnDanger"]}
-                    />
-                  </li>
-                </ul>
+                <PrivateFilmCard
+                  key={film.filmId}
+                  film={film}
+                  handleFilmFormVisibility={() =>
+                    handleFilmFormVisibility(film)
+                  }
+                />
               ))
             )}
           </div>

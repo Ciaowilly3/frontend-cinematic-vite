@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FormInputStyle } from "../FormInputs/FormInput";
+import { IFormFields } from "../../interfaces/IFormFields";
 
 export const schema = z.object({
   coverImg: z
@@ -19,17 +19,7 @@ export const schema = z.object({
 
 export type formFields = z.infer<typeof schema>;
 
-interface filmFormFields {
-  name: keyof formFields;
-  label: string;
-  id: string;
-  type: React.HTMLInputTypeAttribute;
-  placeholder: string;
-  step?: string;
-  style: FormInputStyle;
-}
-
-export const filmFormFields: filmFormFields[] = [
+export const filmFormFields: IFormFields<formFields> = [
   {
     name: "coverImg",
     label: "Cover Img",
