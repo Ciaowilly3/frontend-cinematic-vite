@@ -22,8 +22,12 @@ type customBuilder = EndpointBuilder<
   "loginApi"
 >;
 
+interface JwtToken {
+  token: string;
+}
+
 const login = (builder: customBuilder) =>
-  builder.mutation<Jwt, ILoginUser>({
+  builder.mutation<JwtToken, ILoginUser>({
     query: (body) => ({
       url: `${Routes.LOGIN}`,
       method: HTTP.POST,
@@ -32,7 +36,7 @@ const login = (builder: customBuilder) =>
   });
 
 const register = (builder: customBuilder) =>
-  builder.mutation<Jwt, IRegisterUser>({
+  builder.mutation<JwtToken, IRegisterUser>({
     query: (body) => ({
       url: `${Routes.REGISTER}`,
       method: HTTP.POST,

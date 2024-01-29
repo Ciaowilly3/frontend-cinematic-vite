@@ -14,3 +14,6 @@ export const loginApi = createApi({
 });
 
 export const { useLoginMutation, useRegisterMutation } = loginApi;
+
+//TODO: salvare token nei cookies
+//TODO: provare a mantenere la sessione valida al ricaricare

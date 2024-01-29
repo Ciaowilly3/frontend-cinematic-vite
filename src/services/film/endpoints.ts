@@ -38,7 +38,7 @@ const makeNewFilm = (builder: customBuilder) =>
 const updateFilmById = (builder: customBuilder) =>
   builder.mutation<IFilm, { id: string; body: IFilmDto }>({
     query: ({ id, body }) => ({
-      url: `${Routes.films}/update-film/${id}`,
+      url: `${Routes.films}/private/update-film/${id}`,
       method: HTTP.PUT,
       body: body,
     }),

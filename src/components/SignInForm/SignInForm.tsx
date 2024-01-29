@@ -1,7 +1,3 @@
-import { FaArrowRight } from "react-icons/fa";
-import PrimaryButton from "../PrimaryButton";
-import { Link } from "react-router-dom";
-import { PathsEnum } from "../../enums/PathsEnum";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
@@ -11,8 +7,9 @@ import FormInput from "../FormInputs/FormInput";
 import _ from "lodash";
 import { useRegisterMutation } from "../../services/auth/login/api";
 import { IRegisterUser } from "../../interfaces/IUser";
+import React, { useMemo } from "react";
 
-const SignInForm = () => {
+const SignInForm = React.memo(() => {
   const dispatch = useDispatch();
   const [signin] = useRegisterMutation();
 
@@ -37,30 +34,33 @@ const SignInForm = () => {
       .unwrap()
       .then((payload) => {
         console.log(payload);
+        dispatch(toggleFormModal());
       })
       .catch((e) => {
         console.log(e);
       });
   };
+
   return (
     <div className="SignIn-form">
       <form method="POST" onSubmit={handleSubmit(onSubmit)}>
-        {signInFormFields.map((field) => (
-          <FormInput
-            key={_.uniqueId()}
-            type={field.type}
-            style={field.style}
-            id={field.id}
-            placeholder={field.placeholder}
-            label={field.label}
-            error={errors[field.name]}
-            register={register}
-          />
-        ))}
+        <div>
+          {signInFormFields.map((field) => (
+            <FormInput
+              key={_.uniqueId()}
+              type={field.type}
+              style={field.style}
+              id={field.id}
+              placeholder={field.placeholder}
+              label={field.label}
+              error={errors[field.name]}
+              register={register}
+            />
+          ))}
+        </div>
         <input type="submit" value={"Signin"} className="btn btn-primary" />
       </form>
     </div>
   );
-};
-
+});
 export default SignInForm;

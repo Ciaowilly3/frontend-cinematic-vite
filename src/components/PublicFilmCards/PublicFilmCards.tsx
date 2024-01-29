@@ -16,7 +16,7 @@ const PublicFilmCards = () => {
     return (
       <div className="row">
         {films?.map((film) => (
-          <div key={film.filmId} className="col-3">
+          <div key={film.filmId} className="col-4">
             <PublicFilmCard film={film} />
           </div>
         ))}

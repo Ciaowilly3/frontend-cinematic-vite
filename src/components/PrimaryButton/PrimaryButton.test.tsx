@@ -1,8 +1,8 @@
 import { render, fireEvent } from "@testing-library/react";
 import PrimaryButton from ".";
-import { Style } from "../../utils/setAtomicComponentStyle";
+import { BtnStyles } from "./PrimaryButton";
 
-const style: Style = ["btnDanger"];
+const style: BtnStyles = ["btnDanger"];
 
 const mockedOnClick = jest.fn();
 

@@ -7,7 +7,8 @@ import { useLoginMutation } from "../../services/auth/login/api";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleFormModal } from "../../slices/auth/formModalSlice";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { memorizeWebToken } from "../../slices/auth/authTokenSlice";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState<any>(undefined);
@@ -20,17 +21,16 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<formFields>({
     resolver: zodResolver(schema),
-    mode: "onChange",
-    reValidateMode: "onChange",
-    shouldFocusError: false,
+    mode: "onBlur",
+    reValidateMode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<formFields> = async (data) => {
+  const onSubmit: SubmitHandler<formFields> = useCallback(async (data) => {
     await login(data)
       .unwrap()
       .then((payload) => {
-        console.log(payload);
         setLoginError(false);
+        dispatch(memorizeWebToken(payload.token));
         navigate("/private");
         dispatch(toggleFormModal());
       })
@@ -38,7 +38,7 @@ const LoginForm = () => {
         console.log(e);
         setLoginError(e);
       });
-  };
+  }, []);
 
   return (
     <div className="login-form">
