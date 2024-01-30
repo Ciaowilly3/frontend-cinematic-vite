@@ -16,8 +16,9 @@ export const filmApi = createApi({
     baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const authToken: authTokenState = (getState() as RootState).authToken;
-      authToken
-        ? headers.set("authorization", `Bearer ${authToken.toString()}`)
+      console.log(authToken);
+      authToken.token
+        ? headers.set("authorization", `Bearer ${authToken.token}`)
         : "";
       return headers;
     },

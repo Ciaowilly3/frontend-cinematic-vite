@@ -25,3 +25,5 @@ describe("btn primary test", () => {
     expect(mockedOnClick).toHaveBeenCalledTimes(1);
   });
 });
+
+//TODO: creare funzione esterna che faccia il render
