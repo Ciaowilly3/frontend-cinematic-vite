@@ -12,7 +12,7 @@ const linkStyles = {
 
 export type linkStyles = (keyof typeof linkStyles)[];
 
-interface ILinkProps {
+export interface ILinkProps {
   path: PathsEnum;
   content: string;
   style: linkStyles;

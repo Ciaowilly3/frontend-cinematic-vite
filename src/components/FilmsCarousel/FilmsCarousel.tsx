@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useRetrieveAllFilmsQuery } from "../../services/film/api";
 
 const FilmsCarousel = () => {
@@ -8,8 +7,9 @@ const FilmsCarousel = () => {
     isFetching,
     isError,
   } = useRetrieveAllFilmsQuery();
-
-  if (isLoading || isFetching) {
+  if (isError) {
+    return <span className="text-danger">Error</span>;
+  } else if (isLoading || isFetching) {
     return <span className="loader"></span>;
   } else
     return (

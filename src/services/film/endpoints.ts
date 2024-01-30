@@ -1,7 +1,25 @@
+import {
+  BaseQueryFn,
+  EndpointBuilder,
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+} from "@reduxjs/toolkit/query";
 import { HTTP } from "../../enums/HttpMethodsEnum";
 import { Routes } from "../../enums/routesEnums";
 import { IFilm, IFilmDto, IFilms } from "../../interfaces/IFilm";
-import { customBuilder } from "../utils";
+
+type customBuilder = EndpointBuilder<
+  BaseQueryFn<
+    string | FetchArgs,
+    unknown,
+    FetchBaseQueryError,
+    {},
+    FetchBaseQueryMeta
+  >,
+  "films",
+  "filmsApi"
+>;
 
 const retrieveAllFilms = (builder: customBuilder) =>
   builder.query<IFilms, void>({
@@ -20,7 +38,7 @@ const makeNewFilm = (builder: customBuilder) =>
 const updateFilmById = (builder: customBuilder) =>
   builder.mutation<IFilm, { id: string; body: IFilmDto }>({
     query: ({ id, body }) => ({
-      url: `${Routes.films}/update-film/${id}`,
+      url: `${Routes.films}/private/update-film/${id}`,
       method: HTTP.PUT,
       body: body,
     }),

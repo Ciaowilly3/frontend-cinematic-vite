@@ -6,7 +6,7 @@ export interface IFormField<T> {
   id: string;
   type: React.HTMLInputTypeAttribute;
   placeholder: string;
-  step?: string;
+  step?: number;
   style: FormInputStyle;
 }
 
