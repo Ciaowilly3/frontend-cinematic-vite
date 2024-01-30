@@ -1,13 +1,20 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export type authTokenState = string | null;
-
+export type authTokenState = {
+  token: string;
+};
+const initialState: authTokenState = {
+  token: "",
+};
 const authTokenSlice = createSlice({
   name: "authToken",
-  initialState: null as authTokenState,
+  initialState: initialState,
   reducers: {
     memorizeWebToken: (state, action: PayloadAction<string>) => {
-      return action.payload;
+      return {
+        ...state,
+        token: action.payload,
+      };
     },
   },
 });
