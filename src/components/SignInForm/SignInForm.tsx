@@ -19,8 +19,8 @@ const SignInForm = React.memo(() => {
     formState: { errors },
   } = useForm<formFields>({
     resolver: zodResolver(schema),
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: "onBlur",
+    reValidateMode: "onBlur",
     shouldFocusError: true,
   });
 

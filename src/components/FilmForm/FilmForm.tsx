@@ -48,8 +48,8 @@ const FilmForm = ({
       funFacts: oldFunFacts,
     },
     resolver: zodResolver(schema),
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: "onBlur",
+    reValidateMode: "onBlur",
     shouldFocusError: true,
   });
 
