@@ -14,12 +14,11 @@ const authTokenSlice = createSlice({
   reducers: {
     memorizeWebToken: (state, action: PayloadAction<string>) => {
       const expirationDate = new Date(Date.now() + 1000 * 60 * 60);
-      console.log(typeof expirationDate.toLocaleString());
-
+      const expiration = Date.parse(expirationDate.toISOString());
       return {
         ...state,
         token: action.payload,
-        expirationDate: expirationDate.toLocaleString(),
+        expirationDate: expiration.toString(),
       };
     },
   },

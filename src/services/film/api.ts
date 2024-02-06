@@ -17,6 +17,7 @@ export const filmApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const authToken: authTokenState = (getState() as RootState).authToken;
       console.log(authToken);
+
       authToken.token
         ? headers.set("authorization", `Bearer ${authToken.token}`)
         : "";

@@ -33,7 +33,11 @@ const makeNewGenre = (builder: customBuilder) =>
       url: `${Routes.GENRES}/private/make-genre`,
       method: HTTP.POST,
       body,
+      headers: {
+        "Content-Type": "application/json",
+      },
     }),
+
     invalidatesTags: ["genres"],
   });
 
