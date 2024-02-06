@@ -10,15 +10,11 @@ const useVerifyIfTokenIsExpired = () => {
     const { expirationDate } = authToken;
 
     if (expirationDate) {
-      const expirationDateObject = new Date(expirationDate);
-
-      if (expirationDateObject < new Date()) {
-        console.log("è espirato");
+      if (parseInt(expirationDate) < Date.now()) {
+        console.log("è entrato solo?");
 
         localStorage.removeItem("persist:authToken");
         dispatch(memorizeWebToken(""));
-      } else {
-        console.log("non ancora");
       }
     }
   };
