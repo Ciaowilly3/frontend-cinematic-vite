@@ -10,7 +10,7 @@ import PrimaryLink from "../PrimaryLink";
 const Header = () => {
   const dispatch = useDispatch();
   return (
-    <div data-testid="header" className="bg-my-primary container-fluid">
+    <header data-testid="header" className="bg-my-primary container-fluid">
       <div className="row">
         <div className="col-4">
           <div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3">
@@ -46,7 +46,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

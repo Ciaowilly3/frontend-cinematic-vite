@@ -5,6 +5,7 @@ import FilmForm from "../../components/FilmForm";
 import { useRetrieveAllFilmsQuery } from "../../services/film/api";
 import { IFilm } from "../../interfaces/IFilm";
 import PrivateFilmCard from "../../components/PrivateFilmCard";
+import GenreInput from "../../components/GenreInput";
 
 const PrivateFilmsPage = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -35,13 +36,14 @@ const PrivateFilmsPage = () => {
         />
       ) : (
         <div>
-          <div className="my-3">
+          <div className="my-3 d-flex justify-content-between align-items-center">
             <PrimaryButton
               onClickFunction={() => handleFilmFormVisibility(undefined)}
               icon={FaPlus}
               content={"Create a film"}
               style={["btnPrimary"]}
             />
+            <GenreInput />
           </div>
           <div>
             {isError && <span className="text-red fs-1">ERROR</span>}

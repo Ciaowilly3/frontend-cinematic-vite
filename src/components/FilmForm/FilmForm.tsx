@@ -74,6 +74,7 @@ const FilmForm = ({
       <form
         onSubmit={handleSubmit(onSubmit)}
         method={filmToUpdate ? HTTP.PUT : HTTP.POST}
+        className="gap-3"
       >
         {filmFormFields.map((field) => (
           <FormInput
