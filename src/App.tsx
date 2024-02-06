@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import { LoginFormModal } from "./components";
 import { useSelector } from "react-redux";
+import useVerifyIfTokenIsExpired from "./customHooks/useVerifyIfTokenIsExpired";
+import { useEffect } from "react";
 
 const mountedStyle = {
   animation: "inAnimation 250ms ease-in",
@@ -15,6 +17,11 @@ function App() {
   const isShownLoginForm = useSelector(
     (state: { formModal: boolean }) => state.formModal
   );
+  const { verifyIfTokenIsExpired } = useVerifyIfTokenIsExpired();
+
+  useEffect(() => {
+    verifyIfTokenIsExpired();
+  }, []);
 
   return (
     <div className="App bg-my-secondary">
