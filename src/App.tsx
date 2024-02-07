@@ -1,26 +1,26 @@
-import { Outlet } from "react-router-dom";
-import "./App.css";
-import { LoginFormModal } from "./components";
-import { useSelector } from "react-redux";
-import useVerifyIfTokenIsExpired from "./customHooks/useVerifyIfTokenIsExpired";
-import { useEffect } from "react";
+import { Outlet } from 'react-router-dom';
+import './App.css';
+import { LoginFormModal } from './components';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import useVerifyTokenExpired from './customHooks/useVerifyTokenExpired';
 
 const mountedStyle = {
-  animation: "inAnimation 250ms ease-in",
+  animation: 'inAnimation 250ms ease-in',
 };
 const unmountedStyle = {
-  animation: "outAnimation 250ms ease-out",
-  animationFillMode: "forwards",
+  animation: 'outAnimation 250ms ease-out',
+  animationFillMode: 'forwards',
 };
 
 function App() {
   const isShownLoginForm = useSelector(
     (state: { formModal: boolean }) => state.formModal
   );
-  const { verifyIfTokenIsExpired } = useVerifyIfTokenIsExpired();
+  const { verifyTokenExpired } = useVerifyTokenExpired();
 
   useEffect(() => {
-    verifyIfTokenIsExpired();
+    verifyTokenExpired();
   }, []);
 
   return (
