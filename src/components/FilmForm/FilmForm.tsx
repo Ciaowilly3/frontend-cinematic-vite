@@ -1,16 +1,18 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useMakeNewFilmMutation,
   useUpdateFilmByIdMutation,
-} from "../../services/film/api";
-import { PrimaryButton } from "..";
-import { FaTimes } from "react-icons/fa";
-import { IFilm } from "../../interfaces/IFilm";
-import { HTTP } from "../../enums/HttpMethodsEnum";
-import { filmFormFields, formFields, schema } from "./schema";
-import * as _ from "lodash";
-import FormInput from "../FormInputs/FormInput";
+} from '../../services/film/api';
+import { PrimaryButton } from '..';
+import { FaTimes } from 'react-icons/fa';
+import { FilmDto, FilmGenre, IFilm } from '../../interfaces/IFilm';
+import { HTTP } from '../../enums/HttpMethodsEnum';
+import { filmFormFields, formFields, schema } from './schema';
+import * as _ from 'lodash';
+import FormInput from '../FormInputs/FormInput';
+import GenreSelector from '../GenreSelector';
+import { useState } from 'react';
 
 export interface IFilmFormProps {
   handleFilmFormVisibility: () => void;
@@ -29,10 +31,12 @@ const FilmForm = ({
     plot: oldPlot,
     rating: oldRating,
     funFacts: oldFunFacts,
+    filmGenre: oldFilmGenres,
   } = filmToUpdate ?? {};
 
   const [createFilm] = useMakeNewFilmMutation();
   const [updateFilm] = useUpdateFilmByIdMutation();
+  const [genres, setGenres] = useState<FilmGenre>([]);
 
   const {
     register,
@@ -48,25 +52,31 @@ const FilmForm = ({
       funFacts: oldFunFacts,
     },
     resolver: zodResolver(schema),
-    mode: "onBlur",
-    reValidateMode: "onBlur",
-    shouldFocusError: true,
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    shouldFocusError: false,
   });
 
   const onSubmit: SubmitHandler<formFields> = async (data) => {
+    const film: FilmDto = { ...data, filmGenre: genres };
+    console.log(film);
+
     if (!idToUpdate) {
-      await createFilm(data)
+      await createFilm(film)
         .unwrap()
         .then((payload) => console.log(payload))
         .catch((e) => console.log(e));
       handleFilmFormVisibility();
       return;
     }
-    await updateFilm({ id: idToUpdate, body: data })
+    await updateFilm({ id: idToUpdate, body: film })
       .unwrap()
       .then((payload) => console.log(payload))
       .catch((e) => console.log(e));
     handleFilmFormVisibility();
+  };
+  const handleGenresChange = (genres: FilmGenre) => {
+    setGenres(genres);
   };
 
   return (
@@ -89,17 +99,18 @@ const FilmForm = ({
             register={register}
           />
         ))}
+        <GenreSelector onGenresChange={handleGenresChange} />
         <div className="d-flex justify-content-between">
           <input
             type="submit"
-            value={filmToUpdate ? "Edit" : "Create"}
+            value={filmToUpdate ? 'Edit' : 'Create'}
             className="btn btn-success"
           />
           <PrimaryButton
             onClickFunction={handleFilmFormVisibility}
-            style={["btnDanger"]}
+            style={['btnDanger']}
             icon={FaTimes}
-            content={"Close"}
+            content={'Close'}
           />
         </div>
       </form>
