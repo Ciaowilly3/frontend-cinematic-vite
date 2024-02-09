@@ -1,3 +1,10 @@
+import { GenreDto } from './IGenre';
+
+type genre = {
+  genre: GenreDto;
+};
+
+export type FilmGenre = genre[];
 export interface IFilm {
   filmId: string;
   coverImg: string;
@@ -6,15 +13,10 @@ export interface IFilm {
   plot: string;
   rating: number;
   funFacts: string;
+  filmGenre: FilmGenre;
 }
-export interface IFilmDto {
-  coverImg: string;
-  title: string;
-  nationOfProduction: string;
-  plot: string;
-  rating: number;
-  funFacts: string;
-}
+
+export type FilmDto = Omit<IFilm, 'filmId'>;
 
 export type IFilms = IFilm[];
 

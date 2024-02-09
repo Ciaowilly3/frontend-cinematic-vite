@@ -1,20 +1,27 @@
-import { Outlet } from "react-router-dom";
-import "./App.css";
-import { LoginFormModal } from "./components";
-import { useSelector } from "react-redux";
+import { Outlet } from 'react-router-dom';
+import './App.css';
+import { LoginFormModal } from './components';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import useVerifyTokenExpired from './customHooks/useVerifyTokenExpired';
 
 const mountedStyle = {
-  animation: "inAnimation 250ms ease-in",
+  animation: 'inAnimation 250ms ease-in',
 };
 const unmountedStyle = {
-  animation: "outAnimation 250ms ease-out",
-  animationFillMode: "forwards",
+  animation: 'outAnimation 250ms ease-out',
+  animationFillMode: 'forwards',
 };
 
 function App() {
   const isShownLoginForm = useSelector(
     (state: { formModal: boolean }) => state.formModal
   );
+  const { verifyTokenExpired } = useVerifyTokenExpired();
+
+  useEffect(() => {
+    verifyTokenExpired();
+  }, []);
 
   return (
     <div className="App bg-my-secondary">
