@@ -4,10 +4,10 @@ import {
   FetchArgs,
   FetchBaseQueryError,
   FetchBaseQueryMeta,
-} from "@reduxjs/toolkit/query";
-import { HTTP } from "../../enums/HttpMethodsEnum";
-import { Routes } from "../../enums/routesEnums";
-import { IFilm, IFilmDto, IFilms } from "../../interfaces/IFilm";
+} from '@reduxjs/toolkit/query';
+import { HTTP } from '../../enums/HttpMethodsEnum';
+import { Routes } from '../../enums/routesEnums';
+import { IFilm, FilmDto, IFilms } from '../../interfaces/IFilm';
 
 type customBuilder = EndpointBuilder<
   BaseQueryFn<
@@ -17,32 +17,32 @@ type customBuilder = EndpointBuilder<
     {},
     FetchBaseQueryMeta
   >,
-  "films",
-  "filmsApi"
+  'films',
+  'filmsApi'
 >;
 
 const retrieveAllFilms = (builder: customBuilder) =>
   builder.query<IFilms, void>({
     query: () => Routes.films,
-    providesTags: ["films"],
+    providesTags: ['films'],
   });
 const makeNewFilm = (builder: customBuilder) =>
-  builder.mutation<IFilm, IFilmDto>({
+  builder.mutation<IFilm, FilmDto>({
     query: (body) => ({
-      url: Routes.films,
+      url: `${Routes.films}/private`,
       method: HTTP.POST,
       body,
     }),
-    invalidatesTags: ["films"],
+    invalidatesTags: ['films'],
   });
 const updateFilmById = (builder: customBuilder) =>
-  builder.mutation<IFilm, { id: string; body: IFilmDto }>({
+  builder.mutation<IFilm, { id: string; body: FilmDto }>({
     query: ({ id, body }) => ({
       url: `${Routes.films}/private/update-film/${id}`,
       method: HTTP.PUT,
       body: body,
     }),
-    invalidatesTags: ["films"],
+    invalidatesTags: ['films'],
   });
 const deleteFilmById = (builder: customBuilder) =>
   builder.mutation<void, string>({
@@ -50,6 +50,6 @@ const deleteFilmById = (builder: customBuilder) =>
       url: `${Routes.films}/delete-film/${id}`,
       method: HTTP.DELETE,
     }),
-    invalidatesTags: ["films"],
+    invalidatesTags: ['films'],
   });
 export { retrieveAllFilms, makeNewFilm, updateFilmById, deleteFilmById };

@@ -1,8 +1,8 @@
-import { FaPencil } from "react-icons/fa6";
-import { PrimaryButton } from "..";
-import { IFilm } from "../../interfaces/IFilm";
-import { FaTrash } from "react-icons/fa";
-import { useDeleteFilmByIdMutation } from "../../services/film/api";
+import { FaPencil } from 'react-icons/fa6';
+import { PrimaryButton } from '..';
+import { IFilm } from '../../interfaces/IFilm';
+import { FaTrash } from 'react-icons/fa';
+import { useDeleteFilmByIdMutation } from '../../services/film/api';
 
 type PrivateFilmCardProps = {
   film: IFilm;
@@ -22,7 +22,10 @@ const PrivateFilmCard = ({
     plot,
     rating,
     title,
+    filmGenre,
   } = film;
+  console.log(film);
+
   return (
     <div className="card mb-3">
       <div className="row g-0">
@@ -36,19 +39,20 @@ const PrivateFilmCard = ({
             <p className="card-text">
               <small className="text-body-secondary">
                 {rating} {nationOfProduction} {funFacts}
+                {/* {filmGenre.map((genre) => genre.genre.genreName)} */}
               </small>
             </p>
             <PrimaryButton
               onClickFunction={() => handleFilmFormVisibility(film)}
               icon={FaPencil}
-              content={"Edit"}
-              style={["btnPrimary"]}
-            />{" "}
+              content={'Edit'}
+              style={['btnPrimary']}
+            />{' '}
             <PrimaryButton
               onClickFunction={() => deleteFilm(filmId)}
               icon={FaTrash}
-              content={"Delete"}
-              style={["btnDanger"]}
+              content={'Delete'}
+              style={['btnDanger']}
             />
           </div>
         </div>
