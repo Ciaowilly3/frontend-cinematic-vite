@@ -4,10 +4,10 @@ import {
   FetchArgs,
   FetchBaseQueryError,
   FetchBaseQueryMeta,
-} from "@reduxjs/toolkit/query";
-import { IGenre, GenreDto } from "../../interfaces/IGenre";
-import { Routes } from "../../enums/routesEnums";
-import { HTTP } from "../../enums/HttpMethodsEnum";
+} from '@reduxjs/toolkit/query';
+import { IGenre, GenreDto, IGenres } from '../../interfaces/IGenre';
+import { Routes } from '../../enums/routesEnums';
+import { HTTP } from '../../enums/HttpMethodsEnum';
 
 type customBuilder = EndpointBuilder<
   BaseQueryFn<
@@ -17,14 +17,14 @@ type customBuilder = EndpointBuilder<
     {},
     FetchBaseQueryMeta
   >,
-  "genres",
-  "genresApi"
+  'genres',
+  'genresApi'
 >;
 
 const retrieveAllGenres = (builder: customBuilder) =>
-  builder.query<IGenre, void>({
+  builder.query<IGenres, void>({
     query: () => Routes.GENRES,
-    providesTags: ["genres"],
+    providesTags: ['genres'],
   });
 
 const makeNewGenre = (builder: customBuilder) =>
@@ -34,11 +34,11 @@ const makeNewGenre = (builder: customBuilder) =>
       method: HTTP.POST,
       body,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     }),
 
-    invalidatesTags: ["genres"],
+    invalidatesTags: ['genres'],
   });
 
 export { retrieveAllGenres, makeNewGenre };

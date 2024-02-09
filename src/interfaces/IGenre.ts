@@ -4,7 +4,7 @@ export type GenreDto = {
 
 export interface IGenre {
   genreId: number;
-  genre: string;
+  genreName: string;
 }
 
 export type IGenreDTOs = GenreDto[];
