@@ -3,7 +3,7 @@ import PrimaryLink from '../PrimaryLink';
 
 const SidePrivateNavMenu = () => {
   return (
-    <div className="d-flex flex-column">
+    <aside className="d-flex flex-column">
       <h2>utility links</h2>
       {Object.entries(PathsEnum)
         .filter(([key]) => key.startsWith('PRIVATE'))
@@ -15,7 +15,7 @@ const SidePrivateNavMenu = () => {
             style={['linkFlush', 'txtMySecondary']}
           />
         ))}
-    </div>
+    </aside>
   );
 };
 

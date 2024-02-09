@@ -1,22 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../utils";
-import {
-  deleteFilmById,
-  makeNewFilm,
-  retrieveAllFilms,
-  updateFilmById,
-} from "./endpoints";
 import { authTokenState } from "../../slices/auth/authTokenSlice";
+import { makeNewGenre, retrieveAllGenres } from "./endpoints";
 import { RootState } from "../../store/store";
 
-export const filmApi = createApi({
-  tagTypes: ["films"],
-  reducerPath: "filmsApi",
+export const genresApi = createApi({
+  tagTypes: ["genres"],
+  reducerPath: "genresApi",
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const authToken: authTokenState = (getState() as RootState).authToken;
-      console.log(authToken);
 
       authToken.token
         ? headers.set("authorization", `Bearer ${authToken.token}`)
@@ -27,16 +21,9 @@ export const filmApi = createApi({
   endpoints: () => ({}),
 }).injectEndpoints({
   endpoints: (builder) => ({
-    retrieveAllFilms: retrieveAllFilms(builder),
-    makeNewFilm: makeNewFilm(builder),
-    updateFilmById: updateFilmById(builder),
-    deleteFilmById: deleteFilmById(builder),
+    retrieveAllGenres: retrieveAllGenres(builder),
+    makeNewGenre: makeNewGenre(builder),
   }),
 });
 
-export const {
-  useRetrieveAllFilmsQuery,
-  useMakeNewFilmMutation,
-  useUpdateFilmByIdMutation,
-  useDeleteFilmByIdMutation,
-} = filmApi;
+export const { useRetrieveAllGenresQuery, useMakeNewGenreMutation } = genresApi;

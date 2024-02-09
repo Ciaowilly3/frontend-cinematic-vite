@@ -18,6 +18,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import hardSet from "redux-persist/es/stateReconciler/hardSet";
+import { genresApi } from "../services/genre/api";
 
 export type PersistedRootState = {
   authToken: typeof authTokenSlice;
@@ -27,7 +28,7 @@ const persistConfig: PersistConfig<authTokenState, any, any, any> = {
   version: 1,
   key: "authToken",
   storage: storage,
-  whitelist: ["token"],
+  whitelist: ["token", "expirationDate"],
   stateReconciler: hardSet,
 };
 
@@ -37,6 +38,7 @@ export const rootReducers = {
   [cinemaApi.reducerPath]: cinemaApi.reducer,
   [filmApi.reducerPath]: filmApi.reducer,
   [loginApi.reducerPath]: loginApi.reducer,
+  [genresApi.reducerPath]: genresApi.reducer,
   [formModalSlice.reducerPath]: formModalSlice.reducer,
   [authTokenSlice.reducerPath]: persistedReducer,
 };
@@ -48,7 +50,12 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(cinemaApi.middleware, filmApi.middleware, loginApi.middleware),
+    }).concat(
+      cinemaApi.middleware,
+      filmApi.middleware,
+      loginApi.middleware,
+      genresApi.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
