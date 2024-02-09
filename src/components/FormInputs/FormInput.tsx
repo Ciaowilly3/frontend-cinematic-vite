@@ -1,10 +1,11 @@
-import React from "react";
-import { setAtomicComponentStyle } from "../../utils/setAtomicComponentStyle";
-import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
-import _ from "lodash";
+import React from 'react';
+import { setAtomicComponentStyle } from '../../utils/setAtomicComponentStyle';
+import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
+import _ from 'lodash';
 
 const FormInputStyle = {
-  formControl: "form-control",
+  formControl: 'form-control',
+  checkBox: 'form-check-input',
 };
 
 export type FormInputStyle = (keyof typeof FormInputStyle)[];
@@ -15,7 +16,16 @@ type FormInputProps = {
   id: string;
   placeholder: string;
   label: string;
-  error?: FieldError | undefined | Merge<FieldError, FieldErrorsImpl<any>>;
+  error?:
+    | FieldError
+    | Merge<
+        FieldError,
+        (
+          | Merge<FieldError, FieldErrorsImpl<{ genre: { genreName: string } }>>
+          | undefined
+        )[]
+      >
+    | undefined;
   register?: any;
   step?: number;
 };
