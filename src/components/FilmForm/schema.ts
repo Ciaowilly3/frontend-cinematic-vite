@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { IFormFields } from '../../interfaces/IFormFields';
-import { FilmGenre } from '../../interfaces/IFilm';
 
 export const schema = z.object({
   coverImg: z

@@ -1,13 +1,13 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch } from "react-redux";
-import { toggleFormModal } from "../../slices/auth/formModalSlice";
-import { formFields, schema, signInFormFields } from "./schema";
-import FormInput from "../FormInputs/FormInput";
-import _ from "lodash";
-import { useRegisterMutation } from "../../services/auth/login/api";
-import { IRegisterUser } from "../../interfaces/IUser";
-import React, { useMemo } from "react";
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useDispatch } from 'react-redux';
+import { toggleFormModal } from '../../slices/auth/formModalSlice';
+import { formFields, schema, signInFormFields } from './schema';
+import FormInput from '../FormInputs/FormInput';
+import _ from 'lodash';
+import { useRegisterMutation } from '../../services/auth/login/api';
+import { IRegisterUser } from '../../interfaces/IUser';
+import React from 'react';
 
 const SignInForm = React.memo(() => {
   const dispatch = useDispatch();
@@ -19,8 +19,8 @@ const SignInForm = React.memo(() => {
     formState: { errors },
   } = useForm<formFields>({
     resolver: zodResolver(schema),
-    mode: "onBlur",
-    reValidateMode: "onBlur",
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
     shouldFocusError: true,
   });
 
@@ -28,7 +28,7 @@ const SignInForm = React.memo(() => {
     const newUser: IRegisterUser = {
       ...data,
       cinemaId: 1,
-      role: "ROLE_USER",
+      role: 'ROLE_USER',
     };
     await signin(newUser)
       .unwrap()
@@ -58,7 +58,7 @@ const SignInForm = React.memo(() => {
             />
           ))}
         </div>
-        <input type="submit" value={"Signin"} className="btn btn-primary" />
+        <input type="submit" value={'Signin'} className="btn btn-primary" />
       </form>
     </div>
   );
