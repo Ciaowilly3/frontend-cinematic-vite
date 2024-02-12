@@ -1,6 +1,18 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { useEffect, useLayoutEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { authTokenState } from '../../slices/auth/authTokenSlice';
 
 const PrivatePage = () => {
+  const token = useSelector(
+    (state: { authToken: authTokenState }) => state.authToken
+  );
+  const navigate = useNavigate();
+  useEffect(() => {
+    console.log('è entrato');
+
+    token.token ? '' : navigate('/');
+  }, [token]);
   const location = useLocation();
   const regex = /^\/private\/?$/;
   if (regex.test(location.pathname)) {
