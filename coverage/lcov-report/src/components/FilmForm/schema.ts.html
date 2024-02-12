@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -135,10 +135,10 @@
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,7 +156,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,76 +207,76 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { z } from "zod";</span>
-import { IFormFields } from "../../interfaces/IFormFields";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { z } from 'zod';
+import { IFormFields } from '../../interfaces/IFormFields';
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >schema = z.object({</span>
+export const schema = z.object({
   coverImg: z
     .string()
     .url({ message: "Inserisci un URL valido per l'immagine di copertina" }),
-  title: z.string().min(1, { message: "Il titolo del film è obbligatorio" }),
+  title: z.string().min(1, { message: 'Il titolo del film è obbligatorio' }),
   nationOfProduction: z
     .string()
-    .min(1, { message: "nation of production is mandatory" }),
-  plot: z.string().min(1, { message: "plot is mandatory" }),
+    .min(1, { message: 'nation of production is mandatory' }),
+  plot: z.string().min(1, { message: 'plot is mandatory' }),
   rating: z.coerce
     .number()
     .min(0)
-    .max(5, { message: "Il rating deve essere compreso tra 0 e 5" }),
+    .max(5, { message: 'Il rating deve essere compreso tra 0 e 5' }),
   funFacts: z.string(),
 });
 &nbsp;
 export type formFields = z.infer&lt;typeof schema&gt;;
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >filmFormFields: IFormFields&lt;formFields&gt; = [</span>
+export const filmFormFields: IFormFields&lt;formFields&gt; = [
   {
-    name: "coverImg",
-    label: "Cover Img",
-    id: "coverImg",
-    type: "text",
-    placeholder: "url",
-    style: ["formControl"],
+    name: 'coverImg',
+    label: 'Cover Img',
+    id: 'coverImg',
+    type: 'text',
+    placeholder: 'url',
+    style: ['formControl'],
   },
   {
-    name: "title",
-    label: "Title",
-    id: "title",
-    type: "text",
-    placeholder: "Titolo del film",
-    style: ["formControl"],
+    name: 'title',
+    label: 'Title',
+    id: 'title',
+    type: 'text',
+    placeholder: 'Titolo del film',
+    style: ['formControl'],
   },
   {
-    name: "nationOfProduction",
-    label: "Nation of Production",
-    id: "nationOfProduction",
-    type: "text",
-    placeholder: "Nazione di produzione",
-    style: ["formControl"],
+    name: 'nationOfProduction',
+    label: 'Nation of Production',
+    id: 'nationOfProduction',
+    type: 'text',
+    placeholder: 'Nazione di produzione',
+    style: ['formControl'],
   },
   {
-    name: "plot",
-    label: "Plot",
-    id: "plot",
-    type: "textarea",
-    placeholder: "Trama del film",
-    style: ["formControl"],
+    name: 'plot',
+    label: 'Plot',
+    id: 'plot',
+    type: 'textarea',
+    placeholder: 'Trama del film',
+    style: ['formControl'],
   },
   {
-    name: "rating",
-    label: "Rating",
-    id: "rating",
-    type: "number",
+    name: 'rating',
+    label: 'Rating',
+    id: 'rating',
+    type: 'number',
     step: 0.1,
-    placeholder: "Valutazione del film (0-5)",
-    style: ["formControl"],
+    placeholder: 'Valutazione del film (0-5)',
+    style: ['formControl'],
   },
   {
-    name: "funFacts",
-    label: "Fun Facts",
-    id: "funFacts",
-    type: "textarea",
-    placeholder: "Curiosità divertenti sul film",
-    style: ["formControl"],
+    name: 'funFacts',
+    label: 'Fun Facts',
+    id: 'funFacts',
+    type: 'textarea',
+    placeholder: 'Curiosità divertenti sul film',
+    style: ['formControl'],
   },
 ];
 &nbsp;</pre></td></tr></table></pre>
@@ -286,7 +286,7 @@ export const <span class="cstat-no" title="statement not covered" >filmFormField
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-01T09:07:49.592Z
+                at 2024-02-12T16:25:59.764Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
