@@ -4,11 +4,10 @@ import {
   FetchArgs,
   FetchBaseQueryError,
   FetchBaseQueryMeta,
-} from "@reduxjs/toolkit/query";
-import { Jwt } from "jsonwebtoken";
-import { ILoginUser, IRegisterUser } from "../../../interfaces/IUser";
-import { Routes } from "../../../enums/routesEnums";
-import { HTTP } from "../../../enums/HttpMethodsEnum";
+} from '@reduxjs/toolkit/query';
+import { ILoginUser, IRegisterUser } from '../../../interfaces/IUser';
+import { Routes } from '../../../enums/routesEnums';
+import { HTTP } from '../../../enums/HttpMethodsEnum';
 
 type customBuilder = EndpointBuilder<
   BaseQueryFn<
@@ -18,8 +17,8 @@ type customBuilder = EndpointBuilder<
     {},
     FetchBaseQueryMeta
   >,
-  "login",
-  "loginApi"
+  'login',
+  'loginApi'
 >;
 
 interface JwtToken {

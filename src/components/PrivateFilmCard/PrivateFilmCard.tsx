@@ -22,7 +22,6 @@ const PrivateFilmCard = ({
     plot,
     rating,
     title,
-    filmGenre,
   } = film;
   console.log(film);
 
@@ -39,7 +38,6 @@ const PrivateFilmCard = ({
             <p className="card-text">
               <small className="text-body-secondary">
                 {rating} {nationOfProduction} {funFacts}
-                {/* {filmGenre.map((genre) => genre.genre.genreName)} */}
               </small>
             </p>
             <PrimaryButton

@@ -1,4 +1,4 @@
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useMakeNewFilmMutation,
@@ -31,7 +31,6 @@ const FilmForm = ({
     plot: oldPlot,
     rating: oldRating,
     funFacts: oldFunFacts,
-    filmGenre: oldFilmGenres,
   } = filmToUpdate ?? {};
 
   const [createFilm] = useMakeNewFilmMutation();

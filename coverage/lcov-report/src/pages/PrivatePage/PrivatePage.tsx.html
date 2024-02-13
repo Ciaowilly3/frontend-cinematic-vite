@@ -32,21 +32,21 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
@@ -87,7 +87,18 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -96,11 +107,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,18 +117,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Jwt } from "jsonwebtoken";
-<span class="cstat-no" title="statement not covered" >import { useSelector } from "react-redux";</span>
-<span class="cstat-no" title="statement not covered" >import { Outlet, useLocation } from "react-router-dom";</span>
-<span class="cstat-no" title="statement not covered" >import { persistore } from "../../store/store";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { useEffect } from 'react';</span>
+<span class="cstat-no" title="statement not covered" >import { useSelector } from 'react-redux';</span>
+<span class="cstat-no" title="statement not covered" >import { Outlet, useLocation, useNavigate } from 'react-router-dom';</span>
+import { authTokenState } from '../../slices/auth/authTokenSlice';
 &nbsp;
 const PrivatePage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+  const token = <span class="cstat-no" title="statement not covered" >useSelector(</span>
+<span class="fstat-no" title="function not covered" >    (s</span>tate: { authToken: authTokenState }) =&gt; <span class="cstat-no" title="statement not covered" >state.authToken</span>
+  );
+  const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    token.token ? '' : navigate('/');</span>
+  }, [token]);
   const location = <span class="cstat-no" title="statement not covered" >useLocation();</span>
   const regex = <span class="cstat-no" title="statement not covered" >/^\/private\/?$/;</span>
-  const authToken = <span class="cstat-no" title="statement not covered" >useSelector(<span class="fstat-no" title="function not covered" >(s</span>tate: { authToken: Jwt }) =&gt; <span class="cstat-no" title="statement not covered" >state.authToken)</span>;</span>
-<span class="cstat-no" title="statement not covered" >  console.log(authToken);</span>
-  const persistedState = <span class="cstat-no" title="statement not covered" >persistore.getState();</span>
-<span class="cstat-no" title="statement not covered" >  console.log(persistedState);</span>
 <span class="cstat-no" title="statement not covered" >  if (regex.test(location.pathname)) {</span>
 <span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;div&gt;
@@ -142,7 +151,7 @@ const PrivatePage = <span class="cstat-no" title="statement not covered" ><span 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-01T09:07:49.592Z
+                at 2024-02-12T16:25:59.764Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

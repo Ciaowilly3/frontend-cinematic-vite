@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">73.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>11/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,8 +125,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,22 +141,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,25 +155,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
   BaseQueryFn,
   EndpointBuilder,
   FetchArgs,
   FetchBaseQueryError,
   FetchBaseQueryMeta,
-} from "@reduxjs/toolkit/query";
-<span class="cstat-no" title="statement not covered" >import { HTTP } from "../../enums/HttpMethodsEnum";</span>
-<span class="cstat-no" title="statement not covered" >import { Routes } from "../../enums/routesEnums";</span>
-import { IFilm, IFilmDto, IFilms } from "../../interfaces/IFilm";
+} from '@reduxjs/toolkit/query';
+import { HTTP } from '../../enums/HttpMethodsEnum';
+import { Routes } from '../../enums/routesEnums';
+import { IFilm, FilmDto, IFilms } from '../../interfaces/IFilm';
 &nbsp;
 type customBuilder = EndpointBuilder&lt;
   BaseQueryFn&lt;
@@ -192,42 +192,42 @@ type customBuilder = EndpointBuilder&lt;
     {},
     FetchBaseQueryMeta
   &gt;,
-  "films",
-  "filmsApi"
+  'films',
+  'filmsApi'
 &gt;;
 &nbsp;
-const retrieveAllFilms = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(b</span>uilder: customBuilder) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >  builder.query&lt;IFilms, void&gt;({</span>
+const retrieveAllFilms = (builder: customBuilder) =&gt;
+  builder.query&lt;IFilms, void&gt;({
     query: <span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >Routes.films,</span>
-    providesTags: ["films"],
+    providesTags: ['films'],
   });
-const makeNewFilm = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(b</span>uilder: customBuilder) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >  builder.mutation&lt;IFilm, IFilmDto&gt;({</span>
+const makeNewFilm = (builder: customBuilder) =&gt;
+  builder.mutation&lt;IFilm, FilmDto&gt;({
     query: <span class="fstat-no" title="function not covered" >(b</span>ody) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
-      url: Routes.films,
+      url: `${Routes.films}/private`,
       method: HTTP.POST,
       body,
     }),
-    invalidatesTags: ["films"],
+    invalidatesTags: ['films'],
   });
-const updateFilmById = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(b</span>uilder: customBuilder) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >  builder.mutation&lt;IFilm, { id: string; body: IFilmDto }&gt;({</span>
+const updateFilmById = (builder: customBuilder) =&gt;
+  builder.mutation&lt;IFilm, { id: string; body: FilmDto }&gt;({
     query: <span class="fstat-no" title="function not covered" >({</span> id, body }) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
       url: `${Routes.films}/private/update-film/${id}`,
       method: HTTP.PUT,
       body: body,
     }),
-    invalidatesTags: ["films"],
+    invalidatesTags: ['films'],
   });
-const deleteFilmById = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(b</span>uilder: customBuilder) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >  builder.mutation&lt;void, string&gt;({</span>
+const deleteFilmById = (builder: customBuilder) =&gt;
+  builder.mutation&lt;void, string&gt;({
     query: <span class="fstat-no" title="function not covered" >(i</span>d) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
       url: `${Routes.films}/delete-film/${id}`,
       method: HTTP.DELETE,
     }),
-    invalidatesTags: ["films"],
+    invalidatesTags: ['films'],
   });
-export { <span class="cstat-no" title="statement not covered" >retrieveAllFilms,</span> <span class="cstat-no" title="statement not covered" >makeNewFilm,</span> <span class="cstat-no" title="statement not covered" >updateFilmById,</span> <span class="cstat-no" title="statement not covered" >deleteFilmById </span>};
+export { retrieveAllFilms, makeNewFilm, updateFilmById, deleteFilmById };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -235,7 +235,7 @@ export { <span class="cstat-no" title="statement not covered" >retrieveAllFilms,
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-01T09:07:49.592Z
+                at 2024-02-12T16:25:59.764Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

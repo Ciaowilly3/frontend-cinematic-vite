@@ -1,4 +1,3 @@
-import { useFormContext } from 'react-hook-form';
 import { useRetrieveAllGenresQuery } from '../../services/genre/api';
 import { useState } from 'react';
 import { GenreDto } from '../../interfaces/IGenre';

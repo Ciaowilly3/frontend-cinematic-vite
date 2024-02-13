@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { authTokenState } from '../../slices/auth/authTokenSlice';
@@ -9,8 +9,6 @@ const PrivatePage = () => {
   );
   const navigate = useNavigate();
   useEffect(() => {
-    console.log('è entrato');
-
     token.token ? '' : navigate('/');
   }, [token]);
   const location = useLocation();
