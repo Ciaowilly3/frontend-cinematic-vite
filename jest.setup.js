@@ -1,4 +1,5 @@
-Object.defineProperty(window, "matchMedia", {
+process.env.USE_REAL_STYLES = 'false';
+Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({
     matches: false,
