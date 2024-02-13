@@ -1,21 +1,13 @@
 import { fireEvent, render } from '@testing-library/react';
 import { useDeleteFilmByIdMutation } from '../../services/film/api';
+import { filmMock } from '../../mocks/FilmMock';
 import PrivateFilmCard from '.';
 
 jest.mock('../../services/film/api');
 const mockedUseDeleteFilmByIdMutation = jest.mocked(useDeleteFilmByIdMutation);
 
 const privateFilmCardProps = {
-  film: {
-    title: 'Avengers',
-    filmId: '123',
-    coverImg: 'cover',
-    plot: 'plot',
-    nationOfProduction: 'usa',
-    rating: 0.2,
-    funFacts: 'none',
-    filmGenre: [],
-  },
+  film: filmMock,
   handleFilmFormVisibility: jest.fn(),
 };
 const renderComponent = () => {
@@ -26,15 +18,12 @@ const renderComponent = () => {
     />
   );
 };
-
-beforeEach(() => {
-  mockedUseDeleteFilmByIdMutation.mockReturnValue([
-    jest.fn(),
-    { loading: false, errore: null, reset: jest.fn() },
-  ]);
-});
+const mockDeleteFilm = jest.fn();
 
 describe('PrivateFilmCard', () => {
+  beforeEach(() => {
+    mockedUseDeleteFilmByIdMutation.mockReturnValue([mockDeleteFilm] as never);
+  });
   test('renders film send by prop', () => {
     const { getByText, getByAltText } = renderComponent();
 
@@ -59,6 +48,8 @@ describe('PrivateFilmCard', () => {
 
     fireEvent.click(getByText('Delete'));
 
-    expect(mockedUseDeleteFilmByIdMutation).toHaveBeenCalled();
+    expect(mockDeleteFilm).toHaveBeenCalledWith(
+      privateFilmCardProps.film.filmId
+    );
   });
 });

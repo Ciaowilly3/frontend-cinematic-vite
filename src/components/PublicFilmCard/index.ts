@@ -1,1 +1,1 @@
-export { default } from "./PublicFilmCard";
+export { default } from './PublicFilmCard';

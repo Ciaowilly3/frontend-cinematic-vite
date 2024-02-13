@@ -1,5 +1,6 @@
-import { useRetrieveAllFilmsQuery } from "../../services/film/api";
-import PublicFilmCard from "../PublicFilmCard";
+import { useRetrieveAllFilmsQuery } from '../../services/film/api';
+import MainLoader from '../MainLoader';
+import PublicFilmCard from '../PublicFilmCard';
 
 const PublicFilmCards = () => {
   const {
@@ -11,7 +12,7 @@ const PublicFilmCards = () => {
   if (isError) {
     return <span className="txt-danger">Error</span>;
   } else if (isLoading || isFetching) {
-    return <span className="loader"></span>;
+    return <MainLoader />;
   } else
     return (
       <div className="row">

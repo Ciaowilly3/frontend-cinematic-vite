@@ -24,7 +24,6 @@
 .card-back {
   width: 100%;
   position: absolute;
-  backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,16 +42,16 @@
   flex-direction: column;
   padding: 20px;
   text-align: center;
+  visibility: hidden;
   opacity: 0;
 }
 
 .film-card:hover .card-back {
-  backface-visibility: visible;
-
+  visibility: visible;
   opacity: 1;
 }
 
 .film-card:hover .card-front {
-  backface-visibility: visible;
+  visibility: hidden;
   opacity: 0;
 }
