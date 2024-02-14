@@ -3,7 +3,7 @@ import './App.css';
 import { LoginFormModal } from './components';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import useVerifyTokenExpired from './customHooks/useVerifyTokenExpired';
+import useVerifyTokenExpired from './hooks/useVerifyTokenExpired';
 
 const mountedStyle = {
   animation: 'inAnimation 250ms ease-in',

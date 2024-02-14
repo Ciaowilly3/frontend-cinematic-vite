@@ -9,16 +9,9 @@ const useVerifyTokenExpired = () => {
 
   const verifyTokenExpired = useCallback(() => {
     const { expirationDate } = authToken;
-    console.log('espirazione : ' + expirationDate + ' ora : ' + Date.now());
-    console.log(parseInt(expirationDate) < Date.now());
-
-    if (expirationDate) {
-      if (parseInt(expirationDate) < Date.now()) {
-        console.log('è entrato?');
-
-        localStorage.removeItem('persist:authToken');
-        dispatch(memorizeWebToken(''));
-      }
+    if (expirationDate && parseInt(expirationDate) < Date.now()) {
+      localStorage.removeItem('persist:authToken');
+      dispatch(memorizeWebToken(''));
     }
   }, [authToken, dispatch]);
 
