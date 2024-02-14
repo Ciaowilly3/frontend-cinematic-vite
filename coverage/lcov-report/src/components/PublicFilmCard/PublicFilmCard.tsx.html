@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -89,20 +89,15 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -116,25 +111,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IFilm } from "../../interfaces/IFilm";
-<span class="cstat-no" title="statement not covered" >import "./PublicFilmCard.css";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IFilm } from '../../interfaces/IFilm';
+import './PublicFilmCard.css';
 &nbsp;
 type PublicFilmCardProps = {
   film: IFilm;
 };
 &nbsp;
-const PublicFilmCard = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> film }: PublicFilmCardProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className="film-card"&gt;
+const PublicFilmCard = ({ film }: PublicFilmCardProps) =&gt; {
+  return (
+    &lt;div className="film-card" data-testid="film-card"&gt;
       &lt;div className="card"&gt;
         &lt;div className="card-content"&gt;
-          &lt;div className="card-front"&gt;
+          &lt;div className="card-front" data-testid="card-front"&gt;
             &lt;img src={film.coverImg} alt={film.title} /&gt;
           &lt;/div&gt;
-          &lt;div className="card-back"&gt;
+          &lt;div className="card-back" data-testid="card-back"&gt;
             &lt;h3&gt;{film.title}&lt;/h3&gt;
-&nbsp;
             &lt;p&gt;{film.plot}&lt;/p&gt;
           &lt;/div&gt;
         &lt;/div&gt;
@@ -143,7 +140,7 @@ const PublicFilmCard = <span class="cstat-no" title="statement not covered" ><sp
   );
 };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default PublicFilmCard;</span>
+export default PublicFilmCard;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -151,7 +148,7 @@ const PublicFilmCard = <span class="cstat-no" title="statement not covered" ><sp
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-12T16:25:59.764Z
+                at 2024-02-13T16:41:39.265Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
