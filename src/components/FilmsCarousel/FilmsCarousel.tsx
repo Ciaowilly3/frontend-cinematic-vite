@@ -1,4 +1,5 @@
-import { useRetrieveAllFilmsQuery } from "../../services/film/api";
+import { useRetrieveAllFilmsQuery } from '../../services/film/api';
+import MainLoader from '../MainLoader';
 
 const FilmsCarousel = () => {
   const {
@@ -10,7 +11,7 @@ const FilmsCarousel = () => {
   if (isError) {
     return <span className="text-danger">Error</span>;
   } else if (isLoading || isFetching) {
-    return <span className="loader"></span>;
+    return <MainLoader />;
   } else
     return (
       <div>
