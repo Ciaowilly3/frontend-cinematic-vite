@@ -1,38 +1,46 @@
-import { useRetrieveAllFilmsQuery } from '../../services/film/api';
 import { render } from '@testing-library/react';
 import PublicFilmCards from '.';
-import { filmMock } from '../../mocks/FilmMock';
 
-jest.mock('../../services/film/api');
-const mockedUseRetrieveAllFilmsQuery = jest.mocked(
-  useRetrieveAllFilmsQuery
-) as jest.MockedFunction<typeof useRetrieveAllFilmsQuery>;
+const mockedData = [
+  {
+    title: 'Avengers',
+    filmId: '123',
+    coverImg: 'cover',
+    plot: 'plot',
+    nationOfProduction: 'usa',
+    rating: 0.2,
+    funFacts: 'none',
+    filmGenre: [],
+  },
+];
+const mockedIsFetching = jest.fn().mockReturnValue(false);
+const mockedIsError = jest.fn().mockReturnValue(false);
+jest.mock('../../services/film/api', () => ({
+  useRetrieveAllFilmsQuery: () => ({
+    isFetching: mockedIsFetching(),
+    data: mockedData,
+    isError: mockedIsError(),
+  }),
+}));
+
 const renderComponent = () => render(<PublicFilmCards />);
 
 describe('PublicFilmCards', () => {
   test('renders spinner during loading', () => {
-    mockedUseRetrieveAllFilmsQuery.mockReturnValue({
-      isLoading: true,
-    } as never);
+    mockedIsFetching.mockReturnValueOnce(true);
 
     const { getByTestId } = renderComponent();
 
     expect(getByTestId('loader')).toBeInTheDocument();
   });
   test('renders error if isError', () => {
-    mockedUseRetrieveAllFilmsQuery.mockReturnValue({
-      isError: true,
-    } as never);
+    mockedIsError.mockReturnValueOnce(true);
 
     const { getByText } = renderComponent();
 
     expect(getByText('Error')).toBeInTheDocument();
   });
   test('renders datas correctly', () => {
-    mockedUseRetrieveAllFilmsQuery.mockReturnValue({
-      data: [filmMock],
-    } as never);
-
     const { getByText, getByAltText } = renderComponent();
 
     expect(getByText('Avengers')).toBeInTheDocument();

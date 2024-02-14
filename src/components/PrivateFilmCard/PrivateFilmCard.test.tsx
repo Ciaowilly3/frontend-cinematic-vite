@@ -1,13 +1,23 @@
 import { fireEvent, render } from '@testing-library/react';
 import { useDeleteFilmByIdMutation } from '../../services/film/api';
-import { filmMock } from '../../mocks/FilmMock';
+
 import PrivateFilmCard from '.';
 
 jest.mock('../../services/film/api');
 const mockedUseDeleteFilmByIdMutation = jest.mocked(useDeleteFilmByIdMutation);
 
+const mockedData = {
+  title: 'Avengers',
+  filmId: '123',
+  coverImg: 'cover',
+  plot: 'plot',
+  nationOfProduction: 'usa',
+  rating: 0.2,
+  funFacts: 'none',
+  filmGenre: [],
+};
 const privateFilmCardProps = {
-  film: filmMock,
+  film: mockedData,
   handleFilmFormVisibility: jest.fn(),
 };
 const renderComponent = () => {
