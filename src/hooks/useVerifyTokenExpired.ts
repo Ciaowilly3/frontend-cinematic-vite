@@ -1,21 +1,19 @@
-import { useDispatch } from 'react-redux';
-import {
-  authTokenState,
-  memorizeWebToken,
-} from '../slices/auth/authTokenSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { authTokenState, deleteWebToken } from '../slices/auth/authTokenSlice';
 import { useCallback } from 'react';
 
-const useVerifyTokenExpired = (authToken: authTokenState) => {
+const useVerifyTokenExpired = () => {
   const dispatch = useDispatch();
+  const authToken = useSelector((state: authTokenState) => state);
 
   const verifyTokenExpired = useCallback(() => {
     const { expirationDate } = authToken;
-    console.log(authToken + ' e invece ora ' + Date.now());
+    console.log(authToken.expirationDate + ' e invece ora ' + Date.now());
     if (expirationDate && parseInt(expirationDate) < Date.now()) {
       localStorage.removeItem('persist:authToken');
-      dispatch(memorizeWebToken(''));
+      dispatch(deleteWebToken());
     }
-  }, [dispatch, authToken]);
+  }, [dispatch]);
 
   return {
     verifyTokenExpired,

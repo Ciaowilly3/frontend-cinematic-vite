@@ -1,37 +1,41 @@
 import { renderHook } from '@testing-library/react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useVerifyTokenExpired from './useVerifyTokenExpired';
-import { authTokenState } from '../slices/auth/authTokenSlice';
 
 jest.mock('../store/store');
 jest.mock('react-redux');
 const mockedUseDispatch = jest.mocked(useDispatch);
+const mockedUseSelector = jest.mocked(useSelector);
 
-const hookRender = (mockedToken: authTokenState) =>
-  renderHook(() => useVerifyTokenExpired(mockedToken));
+const mockedDispatch = jest.fn();
+
+const hookRender = () => renderHook(() => useVerifyTokenExpired());
 
 describe('useVerifyTokenExpired', () => {
   beforeEach(() => {
-    mockedUseDispatch.mockReturnValue(jest.fn());
+    mockedUseDispatch.mockReturnValue(mockedDispatch);
   });
   test('verify that token is not expired and perxists in store', () => {
     const mockedToken = {
       token: 'abc',
       expirationDate: (Date.now() + 1000).toString(),
     };
-    const { result } = hookRender(mockedToken);
+    mockedUseSelector.mockReturnValueOnce(mockedToken);
+    const { result } = hookRender();
     result.current.verifyTokenExpired();
 
-    expect(mockedUseDispatch()).not.toHaveBeenCalled();
+    expect(mockedDispatch).not.toHaveBeenCalled();
   });
   test('verify that token is  expired and not perxists in store', () => {
     const mockedToken = {
       token: 'abc',
       expirationDate: (Date.now() - 1000).toString(),
     };
-    const { result } = hookRender(mockedToken);
+    mockedUseSelector.mockReturnValueOnce(mockedToken);
+
+    const { result } = hookRender();
     result.current.verifyTokenExpired();
 
-    expect(mockedUseDispatch()).toHaveBeenCalled();
+    expect(mockedDispatch).toHaveBeenCalled();
   });
 });

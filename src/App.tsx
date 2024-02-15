@@ -4,7 +4,6 @@ import { LoginFormModal } from './components';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import useVerifyTokenExpired from './hooks/useVerifyTokenExpired';
-import { authTokenState } from './slices/auth/authTokenSlice';
 
 const mountedStyle = {
   animation: 'inAnimation 250ms ease-in',
@@ -18,13 +17,11 @@ function App() {
   const isShownLoginForm = useSelector(
     (state: { formModal: boolean }) => state.formModal
   );
-  const { verifyTokenExpired } = useVerifyTokenExpired(
-    useSelector((state: { authToken: authTokenState }) => state.authToken)
-  );
+  const { verifyTokenExpired } = useVerifyTokenExpired();
 
   useEffect(() => {
     verifyTokenExpired();
-  }, []);
+  }, [verifyTokenExpired]);
 
   return (
     <div className="App bg-my-secondary">
