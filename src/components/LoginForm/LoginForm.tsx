@@ -1,17 +1,17 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { formFields, loginFormFields, schema } from "./schema";
-import FormInput from "../FormInputs/FormInput";
-import _ from "lodash";
-import { useLoginMutation } from "../../services/auth/login/api";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { toggleFormModal } from "../../slices/auth/formModalSlice";
-import { useCallback, useState } from "react";
-import { memorizeWebToken } from "../../slices/auth/authTokenSlice";
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { formFields, loginFormFields, schema } from './schema';
+import FormInput from '../FormInputs/FormInput';
+import _ from 'lodash';
+import { useLoginMutation } from '../../services/auth/login/api';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggleFormModal } from '../../slices/auth/formModalSlice';
+import { useCallback, useState } from 'react';
+import { memorizeWebToken } from '../../slices/auth/authTokenSlice';
 
 const LoginForm = () => {
-  const [loginError, setLoginError] = useState<any>(undefined);
+  const [isLoginError, setIsLoginError] = useState<boolean>(false);
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,22 +21,22 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<formFields>({
     resolver: zodResolver(schema),
-    mode: "onBlur",
-    reValidateMode: "onBlur",
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
   });
 
   const onSubmit: SubmitHandler<formFields> = useCallback(async (data) => {
     await login(data)
       .unwrap()
       .then((payload) => {
-        setLoginError(false);
+        setIsLoginError(false);
         dispatch(memorizeWebToken(payload.token));
-        navigate("/private");
+        navigate('/private');
         dispatch(toggleFormModal());
       })
       .catch((e) => {
         console.log(e);
-        setLoginError(e);
+        setIsLoginError(true);
       });
   }, []);
 
@@ -55,16 +55,13 @@ const LoginForm = () => {
             register={register}
           />
         ))}
-        {loginError && (
-          <div>
-            {loginError.status === 403 ? (
-              <p className="text-danger">Password is incorrect</p>
-            ) : (
-              <p className="text-danger">username not found</p>
-            )}
-          </div>
-        )}
-        <input type="submit" value={"Login"} className="btn btn-primary" />
+        {isLoginError && <p className="text-danger">Error occured in Login</p>}
+        <input
+          type="submit"
+          value={'Login'}
+          className="btn btn-primary"
+          data-testid="login"
+        />
       </form>
     </div>
   );
