@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.84% </span>
+                <span class="strong">94.73% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/19</span>
+                <span class='fraction'>18/19</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.88% </span>
+                <span class="strong">94.44% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/18</span>
+                <span class='fraction'>17/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -102,34 +102,34 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,7 +140,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { FormEvent, useCallback, useState } from "react";
 import { GenreDto } from "../../interfaces/IGenre";
 import { PrimaryButton } from "..";
@@ -148,27 +148,27 @@ import { FaPlus } from "react-icons/fa";
 import GenreInputText from "../GenreInputText/GenreInputText";
 import { useMakeNewGenreMutation } from "../../services/genre/api";
 &nbsp;
-const GenreInput = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
-  const [genre, setGenre] = <span class="cstat-no" title="statement not covered" >useState&lt;GenreDto&gt;({ genreName: "" });</span>
-  const [makeNewGenre] = <span class="cstat-no" title="statement not covered" >useMakeNewGenreMutation();</span>
+const GenreInput = () =&gt; {
+  const [genre, setGenre] = useState&lt;GenreDto&gt;({ genreName: "" });
+  const [makeNewGenre] = useMakeNewGenreMutation();
 &nbsp;
-  const handleChange = <span class="cstat-no" title="statement not covered" >useCallback(<span class="fstat-no" title="function not covered" >(e</span>: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setGenre(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; (<span class="cstat-no" title="statement not covered" >{ ...prev, genreName: e.target.value })</span>);</span>
+  const handleChange = useCallback((e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setGenre((prev) =&gt; ({ ...prev, genreName: e.target.value }));
   }, []);
 &nbsp;
-  const handleSubmit = <span class="cstat-no" title="statement not covered" >useCallback(</span>
-<span class="fstat-no" title="function not covered" >    async </span>(e: FormEvent) =&gt; {
-<span class="cstat-no" title="statement not covered" >      e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >      await makeNewGenre(genre)</span>
+  const handleSubmit = useCallback(
+    async (e: FormEvent) =&gt; {
+      e.preventDefault();
+      await makeNewGenre(genre)
         .unwrap()
         .then(<span class="fstat-no" title="function not covered" >(p</span>aylaod) =&gt; <span class="cstat-no" title="statement not covered" >console.log(paylaod))</span>
-        .catch(<span class="fstat-no" title="function not covered" >(e</span>: any) =&gt; <span class="cstat-no" title="statement not covered" >console.log(e))</span>;
+        .catch((e: any) =&gt; console.log(e));
     },
     [genre]
   );
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;form onSubmit={handleSubmit} className="d-flex align-items-center gap-3"&gt;
-      &lt;GenreInputText onChangeFunction={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleChange(e)}</span> /&gt;
+      &lt;GenreInputText onChangeFunction={(e) =&gt; handleChange(e)} /&gt;
       &lt;PrimaryButton
         style={["btnSuccess"]}
         content={"create genre"}
@@ -187,7 +187,7 @@ export default GenreInput;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-14T16:19:49.709Z
+                at 2024-02-15T17:16:46.406Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
