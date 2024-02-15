@@ -12,20 +12,19 @@ const authTokenSlice = createSlice({
   name: 'authToken',
   initialState: initialState,
   reducers: {
-    memorizeWebToken: (state, action: PayloadAction<string>) => {
+    memorizeWebToken: (_, action: PayloadAction<string>) => {
       const expirationDate = new Date(Date.now() + 1000 * 60 * 60);
-      const expiration = action.payload
-        ? Date.parse(expirationDate.toISOString())
-        : '';
+      const expiration = Date.parse(expirationDate.toISOString());
 
       return {
-        ...state,
         token: action.payload,
         expirationDate: expiration.toString(),
       };
     },
+    deleteWebToken: () => {
+      return initialState;
+    },
   },
 });
-
-export const { memorizeWebToken } = authTokenSlice.actions;
+export const { memorizeWebToken, deleteWebToken } = authTokenSlice.actions;
 export default authTokenSlice;
