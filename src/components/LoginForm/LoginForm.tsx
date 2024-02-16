@@ -7,12 +7,13 @@ import { useLoginMutation } from '../../services/auth/login/api';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toggleFormModal } from '../../slices/auth/formModalSlice';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { memorizeWebToken } from '../../slices/auth/authTokenSlice';
+import MainLoader from '../MainLoader';
+import { PathsEnum } from '../../enums/PathsEnum';
 
 const LoginForm = () => {
-  const [isLoginError, setIsLoginError] = useState<boolean>(false);
-  const [login] = useLoginMutation();
+  const [login, { isError, isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -25,20 +26,22 @@ const LoginForm = () => {
     reValidateMode: 'onBlur',
   });
 
-  const onSubmit: SubmitHandler<formFields> = useCallback(async (data) => {
-    await login(data)
+  const onSubmit: SubmitHandler<formFields> = useCallback((data) => {
+    login(data)
       .unwrap()
       .then((payload) => {
-        setIsLoginError(false);
         dispatch(memorizeWebToken(payload.token));
-        navigate('/private');
         dispatch(toggleFormModal());
+        navigate(PathsEnum.PRIVATE);
       })
       .catch((e) => {
         console.log(e);
-        setIsLoginError(true);
       });
   }, []);
+
+  if (isLoading) {
+    return <MainLoader />;
+  }
 
   return (
     <div className="login-form">
@@ -55,7 +58,7 @@ const LoginForm = () => {
             register={register}
           />
         ))}
-        {isLoginError && <p className="text-danger">Error occured in Login</p>}
+        {isError && <p className="text-danger">Error occured in Login</p>}
         <input
           type="submit"
           value={'Login'}
