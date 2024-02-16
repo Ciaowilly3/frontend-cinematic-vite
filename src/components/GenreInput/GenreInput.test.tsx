@@ -13,7 +13,10 @@ const renderComponent = () => render(<GenreInput />);
 
 describe('GenreInput', () => {
   beforeEach(() => {
-    mockedUseMakeGenreMutation.mockReturnValue([mockedMakeNewGenre] as never);
+    mockedUseMakeGenreMutation.mockReturnValue([
+      mockedMakeNewGenre,
+      { isLoading: false, isError: false },
+    ] as never);
     mockedMakeNewGenre.mockReturnValue({
       unwrap: mockedUnwrap.mockReturnValue({
         then: mockedThen.mockRejectedValue({ catch: mockedCatch }),
@@ -25,21 +28,39 @@ describe('GenreInput', () => {
     expect(getByText('create genre')).toBeInTheDocument();
     expect(getByPlaceholderText('genre')).toBeInTheDocument();
   });
-  test('testing onChange Function', () => {
+  test('test if loader renders correctly', async () => {
+    const { getByTestId, getByText, getByPlaceholderText } = renderComponent();
+
+    fireEvent.change(getByPlaceholderText('genre'), {
+      target: { value: 'Action' },
+    });
+
+    fireEvent.submit(getByText('create genre'));
+
+    mockedUseMakeGenreMutation.mockReturnValueOnce([
+      { isLoading: true },
+    ] as never);
+    await waitFor(() => {
+      expect(getByTestId('loader')).toBeInTheDocument();
+    });
+  });
+  test('testing onChange Function', async () => {
     const { getByPlaceholderText } = renderComponent();
     const inputElement = getByPlaceholderText('genre') as HTMLInputElement;
 
     fireEvent.change(inputElement, { target: { value: 'Action' } });
 
-    expect(inputElement.value).toBe('Action');
+    await waitFor(() => {
+      expect(inputElement.value).toBe('Action');
+    });
   });
   test('testing handleSubmit function', async () => {
     const { getByPlaceholderText, getByText } = renderComponent();
-    const inputElement = getByPlaceholderText('genre');
-    const submitElement = getByText('create genre');
 
-    fireEvent.change(inputElement, { target: { value: 'Action' } });
-    fireEvent.submit(submitElement);
+    fireEvent.change(getByPlaceholderText('genre'), {
+      target: { value: 'Action' },
+    });
+    fireEvent.submit(getByText('create genre'));
 
     await waitFor(() => {});
     expect(mockedMakeNewGenre).toHaveBeenCalledWith({ genreName: 'Action' });
