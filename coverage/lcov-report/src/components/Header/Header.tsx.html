@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -110,13 +110,8 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -126,8 +121,8 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,15 +146,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,51 +157,45 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FaSearch, FaUser } from "react-icons/fa";
-import cinematicLogo from "/cinematic-logo.png";
-import "./Header.css";
-import { Link } from "react-router-dom";
-import { PathsEnum } from "../../enums/PathsEnum";
-import { useDispatch } from "react-redux";
-import { toggleFormModal } from "../../slices/auth/formModalSlice";
-import PrimaryLink from "../PrimaryLink";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FaUser } from 'react-icons/fa';
+import cinematicLogo from '/cinematic-logo.png';
+import './Header.css';
+import { Link } from 'react-router-dom';
+import { PathsEnum } from '../../enums/PathsEnum';
+import { useDispatch } from 'react-redux';
+import { toggleFormModal } from '../../slices/auth/formModalSlice';
+import PrimaryLink from '../PrimaryLink';
+import { PrimaryButton } from '..';
 &nbsp;
 const Header = () =&gt; {
   const dispatch = useDispatch();
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;header data-testid="header" className="bg-my-primary container-fluid"&gt;
       &lt;div className="row"&gt;
         &lt;div className="col-4"&gt;
           &lt;div className="nav-container text-white d-flex justify-content-center align-items-center h-100 gap-3"&gt;
             &lt;PrimaryLink
               path={PathsEnum.ABOUT_US}
-              style={["txtMyThird", "linkFlush"]}
+              style={['txtMyThird', 'linkFlush']}
               content="About Us"
             /&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div className="col-4"&gt;
           &lt;div className="logo-container w-100"&gt;
-            &lt;Link to={"/"}&gt;
+            &lt;Link to={'/'}&gt;
               &lt;img src={cinematicLogo} alt="logo" /&gt;
             &lt;/Link&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div className="col-4"&gt;
           &lt;div className="icon-container text-white d-flex justify-content-center align-items-center h-100 gap-3 "&gt;
-            &lt;button
+            &lt;PrimaryButton
               type="button"
-              className="btn-flush btn-third text-my-secondary"
-              onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >dispatch(toggleFormModal())}</span>
-            &gt;
-              &lt;FaUser /&gt;
-            &lt;/button&gt;
-            &lt;button
-              type="button"
-              className="btn-flush btn-third text-my-secondary"
-            &gt;
-              &lt;FaSearch /&gt;
-            &lt;/button&gt;
+              style={['txtMySecondary', 'btnFlush']}
+              icon={FaUser}
+              onClickFunction={() =&gt; dispatch(toggleFormModal())}
+            /&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -229,7 +211,7 @@ export default Header;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-19T16:10:48.575Z
+                at 2024-02-19T16:48:37.306Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
