@@ -13,6 +13,7 @@ import * as _ from 'lodash';
 import FormInput from '../FormInputs/FormInput';
 import GenreSelector from '../GenreSelector';
 import { useState } from 'react';
+import MainLoader from '../MainLoader';
 
 export interface IFilmFormProps {
   handleFilmFormVisibility: () => void;
@@ -33,8 +34,9 @@ const FilmForm = ({
     funFacts: oldFunFacts,
   } = filmToUpdate ?? {};
 
-  const [createFilm] = useMakeNewFilmMutation();
-  const [updateFilm] = useUpdateFilmByIdMutation();
+  const [createFilm, { isError, isLoading }] = useMakeNewFilmMutation();
+  const [updateFilm, { isError: updateError, isLoading: updateLoading }] =
+    useUpdateFilmByIdMutation();
   const [genres, setGenres] = useState<FilmGenre>([]);
 
   const {
@@ -63,14 +65,20 @@ const FilmForm = ({
     if (!idToUpdate) {
       await createFilm(film)
         .unwrap()
-        .then((payload) => console.log(payload))
+        .then((payload) => {
+          console.log(payload);
+          handleFilmFormVisibility();
+        })
         .catch((e) => console.log(e));
-      handleFilmFormVisibility();
+
       return;
     }
     await updateFilm({ id: idToUpdate, body: film })
       .unwrap()
-      .then((payload) => console.log(payload))
+      .then((payload) => {
+        console.log(payload);
+        handleFilmFormVisibility();
+      })
       .catch((e) => console.log(e));
     handleFilmFormVisibility();
   };
@@ -78,6 +86,12 @@ const FilmForm = ({
     setGenres(genres);
   };
 
+  if (isLoading || updateLoading) {
+    return <MainLoader />;
+  }
+  if (isError || updateError) {
+    return <p className="text-danger">An error occured</p>;
+  }
   return (
     <div className="FilmForm">
       <form
