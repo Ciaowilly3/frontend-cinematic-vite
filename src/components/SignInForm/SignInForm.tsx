@@ -8,10 +8,15 @@ import _ from 'lodash';
 import { useRegisterMutation } from '../../services/auth/login/api';
 import { IRegisterUser } from '../../interfaces/IUser';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PathsEnum } from '../../enums/PathsEnum';
+import { memorizeWebToken } from '../../slices/auth/authTokenSlice';
+import MainLoader from '../MainLoader';
 
 const SignInForm = React.memo(() => {
   const dispatch = useDispatch();
-  const [signin] = useRegisterMutation();
+  const [signin, { isError, isLoading }] = useRegisterMutation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -34,32 +39,41 @@ const SignInForm = React.memo(() => {
       .unwrap()
       .then((payload) => {
         console.log(payload);
+        navigate(PathsEnum.PRIVATE);
+        dispatch(memorizeWebToken(payload.token));
         dispatch(toggleFormModal());
-      })
-      .catch((e) => {
-        console.log(e);
       });
   };
 
   return (
     <div className="SignIn-form">
-      <form method="POST" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          {signInFormFields.map((field) => (
-            <FormInput
-              key={_.uniqueId()}
-              type={field.type}
-              style={field.style}
-              id={field.id}
-              placeholder={field.placeholder}
-              label={field.label}
-              error={errors[field.name]}
-              register={register}
-            />
-          ))}
-        </div>
-        <input type="submit" value={'Signin'} className="btn btn-primary" />
-      </form>
+      {isLoading ? (
+        <MainLoader />
+      ) : (
+        <form method="POST" onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            {signInFormFields.map((field) => (
+              <FormInput
+                key={_.uniqueId()}
+                type={field.type}
+                style={field.style}
+                id={field.id}
+                placeholder={field.placeholder}
+                label={field.label}
+                error={errors[field.name]}
+                register={register}
+              />
+            ))}
+            {isError ? <p className="text-danger">an error occured</p> : ''}
+          </div>
+          <input
+            type="submit"
+            value={'Signin'}
+            className="btn btn-primary"
+            data-testid="signin"
+          />
+        </form>
+      )}
     </div>
   );
 });
