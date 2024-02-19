@@ -4,7 +4,7 @@ import PrimaryLink from '../PrimaryLink';
 const SidePrivateNavMenu = () => {
   return (
     <aside className="d-flex flex-column">
-      <h2>utility links</h2>
+      <h2>Private nav links</h2>
       {Object.entries(PathsEnum)
         .filter(([key]) => key.startsWith('PRIVATE'))
         .map(([key, value]) => (
