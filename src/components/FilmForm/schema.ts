@@ -2,10 +2,8 @@ import { z } from 'zod';
 import { IFormFields } from '../../interfaces/IFormFields';
 
 export const schema = z.object({
-  coverImg: z
-    .string()
-    .url({ message: "Inserisci un URL valido per l'immagine di copertina" }),
-  title: z.string().min(1, { message: 'Il titolo del film è obbligatorio' }),
+  coverImg: z.string().url({ message: 'Insert a valid url' }),
+  title: z.string().min(1, { message: 'film title is mandatory' }),
   nationOfProduction: z
     .string()
     .min(1, { message: 'nation of production is mandatory' }),
@@ -13,7 +11,7 @@ export const schema = z.object({
   rating: z.coerce
     .number()
     .min(0)
-    .max(5, { message: 'Il rating deve essere compreso tra 0 e 5' }),
+    .max(5, { message: 'rating must be between 0 and 5' }),
   funFacts: z.string(),
 });
 
@@ -33,7 +31,7 @@ export const filmFormFields: IFormFields<formFields> = [
     label: 'Title',
     id: 'title',
     type: 'text',
-    placeholder: 'Titolo del film',
+    placeholder: 'title',
     style: ['formControl'],
   },
   {
@@ -41,7 +39,7 @@ export const filmFormFields: IFormFields<formFields> = [
     label: 'Nation of Production',
     id: 'nationOfProduction',
     type: 'text',
-    placeholder: 'Nazione di produzione',
+    placeholder: 'nation of production',
     style: ['formControl'],
   },
   {
@@ -49,7 +47,7 @@ export const filmFormFields: IFormFields<formFields> = [
     label: 'Plot',
     id: 'plot',
     type: 'textarea',
-    placeholder: 'Trama del film',
+    placeholder: 'plot',
     style: ['formControl'],
   },
   {
@@ -58,7 +56,7 @@ export const filmFormFields: IFormFields<formFields> = [
     id: 'rating',
     type: 'number',
     step: 0.1,
-    placeholder: 'Valutazione del film (0-5)',
+    placeholder: 'rating (0-5)',
     style: ['formControl'],
   },
   {
@@ -66,7 +64,7 @@ export const filmFormFields: IFormFields<formFields> = [
     label: 'Fun Facts',
     id: 'funFacts',
     type: 'textarea',
-    placeholder: 'Curiosità divertenti sul film',
+    placeholder: "film' fun facts ",
     style: ['formControl'],
   },
 ];
