@@ -1,6 +1,7 @@
 import { useRetrieveAllGenresQuery } from '../../services/genre/api';
 import { useState } from 'react';
 import { GenreDto } from '../../interfaces/IGenre';
+import MainLoader from '../MainLoader';
 
 type GenreElement = GenreDto | { genre: { genreName: string } };
 
@@ -24,11 +25,11 @@ const GenreSelector = ({ onGenresChange }: GenreSelectorProps) => {
   };
 
   if (isFetching) {
-    return <span className="loader"></span>;
+    return <MainLoader />;
   }
 
   if (isError || !genres) {
-    return <p>Si è verificato un errore durante il recupero dei generi.</p>;
+    return <p className="text-danger">An error occured in genres fetching</p>;
   }
   return (
     <>
