@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.82% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/17</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,32 +121,30 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,54 +176,56 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FaTimes } from "react-icons/fa";
-import LoginForm from "../LoginForm/LoginForm";
-import PrimaryButton from "../PrimaryButton";
-import "./LoginFormModal.css";
-import { useCallback, useState } from "react";
-import SignInForm from "../SignInForm";
-import { useDispatch } from "react-redux";
-import { toggleFormModal } from "../../slices/auth/formModalSlice";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FaTimes } from 'react-icons/fa';
+import LoginForm from '../LoginForm';
+import PrimaryButton from '../PrimaryButton';
+import './LoginFormModal.css';
+import { useCallback, useState } from 'react';
+import SignInForm from '../SignInForm';
+import { useDispatch } from 'react-redux';
+import { toggleFormModal } from '../../slices/auth/formModalSlice';
 &nbsp;
-const LoginFormModal = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
-  const dispatch = <span class="cstat-no" title="statement not covered" >useDispatch();</span>
-  const [isLoginForm, setIsLoginForm] = <span class="cstat-no" title="statement not covered" >useState(true);</span>
+const LoginFormModal = () =&gt; {
+  const dispatch = useDispatch();
+  const [isLoginForm, setIsLoginForm] = useState(true);
 &nbsp;
-  const handleFormSwitch = <span class="cstat-no" title="statement not covered" >useCallback(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setIsLoginForm(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; <span class="cstat-no" title="statement not covered" >!prev)</span>;</span>
+  const handleFormSwitch = useCallback(() =&gt; {
+    setIsLoginForm((prev) =&gt; !prev);
   }, []);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="form-modal border-my-primary shadow-lg p-3 bg-my-secondary"&gt;
-      &lt;div className="text-end mb-3"&gt;
+      &lt;div className="text-end mb-3" data-testid="close"&gt;
         &lt;PrimaryButton
           icon={FaTimes}
-          style={["btnDanger", "circle"]}
-          onClickFunction={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >dispatch(toggleFormModal())}</span>
+          style={['btnDanger', 'circle']}
+          onClickFunction={() =&gt; dispatch(toggleFormModal())}
         /&gt;
       &lt;/div&gt;
       &lt;div className="d-flex justify-content-between"&gt;
         &lt;h2
           className={`fw-bolder text-third-hover ${
-            isLoginForm ? "text-my-third" : "text-my-primary"
+            isLoginForm ? 'text-my-third' : 'text-my-primary'
           }`}
         &gt;
           &lt;PrimaryButton
-            content={"Login"}
-            style={["btnFlush"]}
+            content={'Login'}
+            style={['btnFlush']}
             onClickFunction={handleFormSwitch}
             disable={isLoginForm ? true : undefined}
           /&gt;
         &lt;/h2&gt;
         &lt;h2
           className={`fw-bolder text-third-hover ${
-            isLoginForm ? "text-my-primary" : "text-my-third"
+            isLoginForm ? 'text-my-primary' : 'text-my-third'
           }`}
         &gt;
           &lt;PrimaryButton
-            content={"Sign-in"}
-            style={["btnFlush"]}
+            content={'Sign-in'}
+            style={['btnFlush']}
             onClickFunction={handleFormSwitch}
             disable={!isLoginForm ? true : undefined}
           /&gt;
@@ -244,7 +244,7 @@ export default LoginFormModal;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-16T16:45:41.473Z
+                at 2024-02-19T16:10:48.575Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
