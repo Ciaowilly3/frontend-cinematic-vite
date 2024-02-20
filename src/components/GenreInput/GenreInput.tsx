@@ -17,10 +17,7 @@ const GenreInput = () => {
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
       e.preventDefault();
-      await makeNewGenre(genre)
-        .unwrap()
-        .then((paylaod) => console.log(paylaod))
-        .catch((e: any) => console.log(e));
+      await makeNewGenre(genre);
     },
     [genre]
   );
