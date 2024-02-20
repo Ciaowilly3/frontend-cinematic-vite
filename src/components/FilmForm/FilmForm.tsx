@@ -62,25 +62,10 @@ const FilmForm = ({
     const film: FilmDto = { ...data, filmGenre: genres };
     console.log(film);
 
-    if (!idToUpdate) {
-      await createFilm(film)
-        .unwrap()
-        .then((payload) => {
-          console.log(payload);
-          handleFilmFormVisibility();
-        })
-        .catch((e) => console.log(e));
-
-      return;
-    }
-    await updateFilm({ id: idToUpdate, body: film })
-      .unwrap()
-      .then((payload) => {
-        console.log(payload);
-        handleFilmFormVisibility();
-      })
-      .catch((e) => console.log(e));
-    handleFilmFormVisibility();
+    const res = !idToUpdate
+      ? await createFilm(film)
+      : await updateFilm({ id: idToUpdate, body: film });
+    if ('data' in res) handleFilmFormVisibility();
   };
   const handleGenresChange = (genres: FilmGenre) => {
     setGenres(genres);
