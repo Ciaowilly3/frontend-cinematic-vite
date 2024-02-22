@@ -16,6 +16,10 @@ const PublicFilmCard = ({ film }: PublicFilmCardProps) => {
           <div className="card-back" data-testid="card-back">
             <h3>{film.title}</h3>
             <p>{film.plot}</p>
+            <p>
+              Genres:{' '}
+              {film.filmGenre.map((genre) => genre.genre.genreName + ' ')}
+            </p>
           </div>
         </div>
       </div>
