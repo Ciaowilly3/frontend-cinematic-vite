@@ -1,28 +1,28 @@
 import { useRetrieveAllGenresQuery } from '../../services/genre/api';
-import { useState } from 'react';
-import { GenreDto } from '../../interfaces/IGenre';
+import { useCallback } from 'react';
 import MainLoader from '../MainLoader';
-
-type GenreElement = GenreDto | { genre: { genreName: string } };
+import { FilmGenre } from '../../interfaces/IFilm';
 
 type GenreSelectorProps = {
-  onGenresChange: (genres: any) => void;
+  onGenresChange: (genres: FilmGenre) => void;
+  genresProp: FilmGenre;
 };
 
-const GenreSelector = ({ onGenresChange }: GenreSelectorProps) => {
-  const [selectedGenres, setSelectedGenres] = useState<GenreElement[]>([]);
+const GenreSelector = ({ onGenresChange, genresProp }: GenreSelectorProps) => {
   const { data: genres, isError, isFetching } = useRetrieveAllGenresQuery();
 
-  const handleCheckboxChange = (genreName: string, checked: boolean) => {
-    const updatedGenres = checked
-      ? [...selectedGenres, { genre: { genreName } }]
-      : selectedGenres.filter(
-          (genre) => 'genreName' in genre && genre.genreName !== genreName
-        );
+  const handleCheckboxChange = useCallback(
+    (genreName: string, checked: boolean) => {
+      const updatedGenres = checked
+        ? [...genresProp, { genre: { genreName } }]
+        : genresProp.filter(
+            (genre) => 'genreName' in genre && genre.genreName !== genreName
+          );
 
-    setSelectedGenres(updatedGenres);
-    onGenresChange(updatedGenres);
-  };
+      onGenresChange(updatedGenres);
+    },
+    [genresProp]
+  );
 
   if (isFetching) {
     return <MainLoader />;

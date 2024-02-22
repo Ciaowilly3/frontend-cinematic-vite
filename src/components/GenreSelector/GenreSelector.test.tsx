@@ -23,7 +23,10 @@ jest.mock('../../services/genre/api', () => ({
 
 const renderComponent = () => {
   return render(
-    <GenreSelector onGenresChange={mockedGenreSelectorProps.onGenresChange} />
+    <GenreSelector
+      onGenresChange={mockedGenreSelectorProps.onGenresChange}
+      genresProp={[]}
+    />
   );
 };
 
