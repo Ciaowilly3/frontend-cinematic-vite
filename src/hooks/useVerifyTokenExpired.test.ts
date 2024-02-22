@@ -1,16 +1,20 @@
 import { renderHook } from '@testing-library/react';
-import { useDispatch, useSelector } from 'react-redux';
 import useVerifyTokenExpired from './useVerifyTokenExpired';
 import { deleteWebToken } from '../slices/auth/authTokenSlice';
 
 import { useNavigate } from 'react-router';
 
+const mockedToken = jest.fn().mockReturnValue({
+  token: 'abc',
+  expirationDate: (Date.now() - 1000).toString(),
+});
 jest.mock('../store/store');
 jest.mock('../slices/auth/authTokenSlice');
-jest.mock('react-redux');
+jest.mock('react-redux', () => ({
+  useSelector: () => mockedToken(),
+  useDispatch: () => mockedDispatch,
+}));
 jest.mock('react-router');
-const mockedUseDispatch = jest.mocked(useDispatch);
-const mockedUseSelector = jest.mocked(useSelector);
 const mockedUseNavigate = jest.mocked(useNavigate);
 const mockedDeleteWebToken = jest.mocked(deleteWebToken);
 
@@ -21,15 +25,13 @@ const hookRender = () => renderHook(() => useVerifyTokenExpired());
 
 describe('useVerifyTokenExpired', () => {
   beforeEach(() => {
-    mockedUseDispatch.mockReturnValue(mockedDispatch);
     mockedUseNavigate.mockReturnValue(mockedNavigate);
   });
   test('verify that token is not expired and perxists in store', () => {
-    const mockedToken = {
+    mockedToken.mockReturnValueOnce({
       token: 'abc',
       expirationDate: (Date.now() + 1000).toString(),
-    };
-    mockedUseSelector.mockReturnValueOnce(mockedToken);
+    });
     const { result } = hookRender();
     result.current.verifyTokenExpired();
 
@@ -38,12 +40,6 @@ describe('useVerifyTokenExpired', () => {
     expect(mockedNavigate).not.toHaveBeenCalled();
   });
   test('verify that token is  expired and not perxists in store', () => {
-    const mockedToken = {
-      token: 'abc',
-      expirationDate: (Date.now() - 1000).toString(),
-    };
-    mockedUseSelector.mockReturnValueOnce(mockedToken);
-
     const { result } = hookRender();
     result.current.verifyTokenExpired();
 

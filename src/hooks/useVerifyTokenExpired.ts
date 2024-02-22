@@ -12,7 +12,6 @@ const useVerifyTokenExpired = () => {
 
   const verifyTokenExpired = useCallback(() => {
     const { expirationDate } = authToken;
-    console.log(authToken + ' e invece ora ' + Date.now());
     if (expirationDate && parseInt(expirationDate) < Date.now()) {
       localStorage.removeItem('persist:authToken');
       dispatch(deleteWebToken());
