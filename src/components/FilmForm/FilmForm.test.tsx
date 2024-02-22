@@ -1,10 +1,7 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import FilmForm from './';
-import { useForm } from 'react-hook-form';
 
-jest.mock('../GenreSelector', () =>
-  jest.fn().mockReturnValue(<div>Genre</div>)
-);
+jest.mock('../GenreSelector', () => 'GenreSelector');
 
 const mockedIsError = jest.fn().mockReturnValue(false);
 const mockedIsLoading = jest.fn().mockReturnValue(false);

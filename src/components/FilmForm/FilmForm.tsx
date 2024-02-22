@@ -12,7 +12,7 @@ import { filmFormFields, formFields, schema } from './schema';
 import * as _ from 'lodash';
 import FormInput from '../FormInputs/FormInput';
 import GenreSelector from '../GenreSelector';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import MainLoader from '../MainLoader';
 
 export interface IFilmFormProps {
@@ -67,9 +67,12 @@ const FilmForm = ({
       : await updateFilm({ id: idToUpdate, body: film });
     if ('data' in res) handleFilmFormVisibility();
   };
-  const handleGenresChange = (genres: FilmGenre) => {
-    setGenres(genres);
-  };
+  const handleGenresChange = useCallback(
+    (genres: FilmGenre) => {
+      setGenres(genres);
+    },
+    [genres]
+  );
 
   if (isLoading || updateLoading) {
     return <MainLoader />;
@@ -97,7 +100,10 @@ const FilmForm = ({
             register={register}
           />
         ))}
-        <GenreSelector onGenresChange={handleGenresChange} />
+        <GenreSelector
+          onGenresChange={handleGenresChange}
+          genresProp={genres}
+        />
         <div className="d-flex justify-content-between">
           <input
             type="submit"
