@@ -1,6 +1,7 @@
 export enum Routes {
-  films = "films",
-  LOGIN = "authenticate",
-  REGISTER = "register",
-  GENRES = "genres",
+  FILMS = 'films',
+  CINEMA = 'cinema',
+  LOGIN = 'authenticate',
+  REGISTER = 'register',
+  GENRES = 'genres',
 }
