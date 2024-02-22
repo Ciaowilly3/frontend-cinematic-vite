@@ -1,12 +1,27 @@
-import { ICinemaList } from "../../interfaces/ICinemas";
-import { FetchArgs, FetchBaseQueryError, FetchBaseQueryMeta, BaseQueryFn, EndpointBuilder } from "@reduxjs/toolkit/query";
+import { ICinemaList } from '../../interfaces/ICinemas';
+import {
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+  BaseQueryFn,
+  EndpointBuilder,
+} from '@reduxjs/toolkit/query';
 
+export type customBuilder = EndpointBuilder<
+  BaseQueryFn<
+    string | FetchArgs,
+    unknown,
+    FetchBaseQueryError,
+    {},
+    FetchBaseQueryMeta
+  >,
+  never,
+  'cinemaApi'
+>;
 
-type customBuilder = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, never, "cinemaApi">
+const retrieveAllCinema = (builder: customBuilder) =>
+  builder.query<ICinemaList, void>({
+    query: () => `cinema`,
+  });
 
-const retrieveAllCinema = (builder : customBuilder) =>
-    builder.query<ICinemaList, void>({
-        query: () => `cinema`,
-    })
-
-export {retrieveAllCinema}
+export { retrieveAllCinema };
