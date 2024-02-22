@@ -130,4 +130,36 @@ describe('SignInForm', () => {
       expect(mockedNavigate).toHaveBeenCalledWith(PathsEnum.PRIVATE);
     });
   });
+  test('test if  error displays for different password', async () => {
+    const { getByTestId, getByPlaceholderText, getByText } = renderComponent();
+    const usernameInputElement = getByPlaceholderText(
+      'Username'
+    ) as HTMLInputElement;
+    const emailInputElement = getByPlaceholderText('Email') as HTMLInputElement;
+    const passwordInputElement = getByPlaceholderText(
+      'Password'
+    ) as HTMLInputElement;
+    const confirmPasswordInputElement = getByPlaceholderText(
+      'Confirm Password'
+    ) as HTMLInputElement;
+
+    fireEvent.change(usernameInputElement, {
+      target: { value: mockedUser.userName },
+    });
+    fireEvent.change(emailInputElement, {
+      target: { value: mockedUser.email },
+    });
+    fireEvent.change(passwordInputElement, {
+      target: { value: mockedUser.password },
+    });
+    fireEvent.change(confirmPasswordInputElement, {
+      target: { value: mockedUser.confirmPassword + 's' },
+    });
+
+    fireEvent.submit(getByTestId('signin'));
+
+    await waitFor(() => {
+      expect(getByText('password must match')).toBeInTheDocument();
+    });
+  });
 });
