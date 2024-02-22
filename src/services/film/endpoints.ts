@@ -9,7 +9,7 @@ import { HTTP } from '../../enums/HttpMethodsEnum';
 import { Routes } from '../../enums/routesEnums';
 import { IFilm, FilmDto, IFilms } from '../../interfaces/IFilm';
 
-type customBuilder = EndpointBuilder<
+export type customBuilder = EndpointBuilder<
   BaseQueryFn<
     string | FetchArgs,
     unknown,
@@ -23,13 +23,13 @@ type customBuilder = EndpointBuilder<
 
 const retrieveAllFilms = (builder: customBuilder) =>
   builder.query<IFilms, void>({
-    query: () => Routes.films,
+    query: () => ({ url: Routes.FILMS, method: HTTP.GET }),
     providesTags: ['films'],
   });
 const makeNewFilm = (builder: customBuilder) =>
   builder.mutation<IFilm, FilmDto>({
     query: (body) => ({
-      url: `${Routes.films}/private`,
+      url: `${Routes.FILMS}/private`,
       method: HTTP.POST,
       body,
     }),
@@ -38,7 +38,7 @@ const makeNewFilm = (builder: customBuilder) =>
 const updateFilmById = (builder: customBuilder) =>
   builder.mutation<IFilm, { id: string; body: FilmDto }>({
     query: ({ id, body }) => ({
-      url: `${Routes.films}/private/update-film/${id}`,
+      url: `${Routes.FILMS}/private/update-film/${id}`,
       method: HTTP.PUT,
       body: body,
     }),
@@ -47,7 +47,7 @@ const updateFilmById = (builder: customBuilder) =>
 const deleteFilmById = (builder: customBuilder) =>
   builder.mutation<void, string>({
     query: (id) => ({
-      url: `${Routes.films}/delete-film/${id}`,
+      url: `${Routes.FILMS}/delete-film/${id}`,
       method: HTTP.DELETE,
     }),
     invalidatesTags: ['films'],
