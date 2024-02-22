@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">90.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/21</span>
+                <span class='fraction'>19/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">90.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/21</span>
+                <span class='fraction'>19/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -142,28 +142,21 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,6 +168,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,7 +176,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -217,9 +217,9 @@ const PrivateFilmsPage = () =&gt; {
   const { data: films, isFetching, isError } = useRetrieveAllFilmsQuery();
 &nbsp;
   const handleFilmFormVisibility = useCallback(
-<span class="fstat-no" title="function not covered" >    (f</span>ilm?: IFilm) =&gt; {
-<span class="cstat-no" title="statement not covered" >      film ? setFilmToUpdate(film) : setFilmToUpdate(undefined);</span>
-<span class="cstat-no" title="statement not covered" >      setIsFormVisible(!isFormVisible);</span>
+    (film?: IFilm) =&gt; {
+      film ? <span class="branch-0 cbranch-no" title="branch not covered" >setFilmToUpdate(film) </span>: setFilmToUpdate(undefined);
+      setIsFormVisible(!isFormVisible);
     },
     [isFormVisible]
   );
@@ -228,7 +228,7 @@ const PrivateFilmsPage = () =&gt; {
     &lt;div&gt;
       &lt;h3 className="text-my-primary"&gt;PrivateFilmPage&lt;/h3&gt;
       {isFormVisible ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >        &lt;FilmForm</span>
+        &lt;FilmForm
           handleFilmFormVisibility={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >handleFilmFormVisibility()}</span>
           filmToUpdate={filmToUpdate}
         /&gt;
@@ -236,7 +236,7 @@ const PrivateFilmsPage = () =&gt; {
         &lt;div&gt;
           &lt;div className="my-3 d-flex justify-content-between align-items-center"&gt;
             &lt;PrimaryButton
-              onClickFunction={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >handleFilmFormVisibility()}</span>
+              onClickFunction={() =&gt; handleFilmFormVisibility()}
               icon={FaPlus}
               content={'Create a film'}
               style={['btnPrimary']}
@@ -247,10 +247,10 @@ const PrivateFilmsPage = () =&gt; {
             {isError ? (
               &lt;span className="text-red fs-1"&gt;ERROR&lt;/span&gt;
             ) : isFetching ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >              &lt;MainLoader /&gt;</span>
+              &lt;MainLoader /&gt;
             ) : (
-              films?.map(<span class="fstat-no" title="function not covered" >(f</span>ilm) =&gt; (
-<span class="cstat-no" title="statement not covered" >                &lt;PrivateFilmCard</span>
+              films?.map((film) =&gt; (
+                &lt;PrivateFilmCard
                   key={film.filmId}
                   film={film}
                   handleFilmFormVisibility={<span class="fstat-no" title="function not covered" >() =</span>&gt;
@@ -274,7 +274,7 @@ export default PrivateFilmsPage;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-20T17:14:16.587Z
+                at 2024-02-21T16:54:27.160Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
