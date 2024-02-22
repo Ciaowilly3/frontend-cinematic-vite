@@ -9,7 +9,7 @@ import { ILoginUser, IRegisterUser } from '../../../interfaces/IUser';
 import { Routes } from '../../../enums/routesEnums';
 import { HTTP } from '../../../enums/HttpMethodsEnum';
 
-type customBuilder = EndpointBuilder<
+export type customBuilder = EndpointBuilder<
   BaseQueryFn<
     string | FetchArgs,
     unknown,
