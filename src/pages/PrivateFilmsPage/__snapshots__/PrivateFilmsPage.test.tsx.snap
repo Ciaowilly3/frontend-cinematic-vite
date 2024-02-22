@@ -34,8 +34,15 @@ exports[`PrivateFilmPage should render 1`] = `
               </svg>
               Create a film
             </button>
+            <div>
+              Genre
+            </div>
           </div>
-          <div />
+          <div>
+            <div>
+              Avengers
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -70,8 +77,15 @@ exports[`PrivateFilmPage should render 1`] = `
             </svg>
             Create a film
           </button>
+          <div>
+            Genre
+          </div>
         </div>
-        <div />
+        <div>
+          <div>
+            Avengers
+          </div>
+        </div>
       </div>
     </div>
   </div>,
