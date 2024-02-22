@@ -9,7 +9,7 @@ import { IGenre, GenreDto, IGenres } from '../../interfaces/IGenre';
 import { Routes } from '../../enums/routesEnums';
 import { HTTP } from '../../enums/HttpMethodsEnum';
 
-type customBuilder = EndpointBuilder<
+export type customBuilder = EndpointBuilder<
   BaseQueryFn<
     string | FetchArgs,
     unknown,
@@ -23,7 +23,7 @@ type customBuilder = EndpointBuilder<
 
 const retrieveAllGenres = (builder: customBuilder) =>
   builder.query<IGenres, void>({
-    query: () => Routes.GENRES,
+    query: () => ({ url: Routes.GENRES, method: HTTP.GET }),
     providesTags: ['genres'],
   });
 
