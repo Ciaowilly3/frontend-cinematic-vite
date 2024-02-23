@@ -4,12 +4,14 @@ import { render, waitFor } from '@testing-library/react';
 const mockedIsShownLoginForm = jest.fn().mockReturnValue(false);
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
-  useSelector: () => mockedIsShownLoginForm(),
+  useSelector: () => jest.fn().mockReturnValue(mockedIsShownLoginForm()),
 }));
 
 jest.mock('./hooks/useVerifyTokenExpired', () => ({
   __esModule: true,
-  default: jest.fn().mockReturnValue({ verifyTokenExpired: jest.fn() }),
+  default: jest
+    .fn((state) => state)
+    .mockReturnValue({ verifyTokenExpired: jest.fn() }),
 }));
 
 jest.mock('./components/LoginFormModal', () =>

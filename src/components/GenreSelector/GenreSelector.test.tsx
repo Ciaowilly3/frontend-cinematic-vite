@@ -2,7 +2,7 @@ import { fireEvent, render, waitFor } from '@testing-library/react';
 import GenreSelector from '.';
 
 const mockedGenreSelectorProps = {
-  onGenresChange: jest.fn(),
+  onGenresChange: jest.fn((genre) => mockedGenreProp.mockReturnValue(genre)),
 };
 
 const mockedGenresData = [
@@ -21,11 +21,13 @@ jest.mock('../../services/genre/api', () => ({
   }),
 }));
 
+const mockedGenreProp = jest.fn().mockReturnValue([]);
+
 const renderComponent = () => {
   return render(
     <GenreSelector
       onGenresChange={mockedGenreSelectorProps.onGenresChange}
-      genresProp={[]}
+      genresProp={mockedGenreProp()}
     />
   );
 };
@@ -60,8 +62,8 @@ describe('GenreSelector', () => {
   });
 
   test('checking onChange function for check and uncheck event', async () => {
-    const { getByLabelText } = renderComponent();
     const genre = mockedGenresData[0];
+    const { getByLabelText } = renderComponent();
 
     const checkbox = getByLabelText(genre.genreName);
 
@@ -71,10 +73,14 @@ describe('GenreSelector', () => {
       expect(mockedGenreSelectorProps.onGenresChange).toHaveBeenCalledWith([
         { genre: { genreName: genre.genreName } },
       ]);
+      expect(mockedGenreProp()).toStrictEqual([
+        { genre: { genreName: genre.genreName } },
+      ]);
     });
     fireEvent.click(checkbox);
     await waitFor(() => {
       expect(mockedGenreSelectorProps.onGenresChange).toHaveBeenCalledWith([]);
+      expect(mockedGenreProp()).toStrictEqual([]);
     });
   });
 });
