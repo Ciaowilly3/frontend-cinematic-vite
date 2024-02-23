@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1708609917690" clover="3.2.0">
-  <project timestamp="1708609917690" name="All files">
-    <metrics statements="403" coveredstatements="396" conditionals="90" coveredconditionals="84" methods="94" coveredmethods="87" elements="587" coveredelements="567" complexity="0" loc="403" ncloc="403" packages="35" files="42" classes="42"/>
+<coverage generated="1708617355721" clover="3.2.0">
+  <project timestamp="1708617355721" name="All files">
+    <metrics statements="404" coveredstatements="397" conditionals="90" coveredconditionals="84" methods="95" coveredmethods="88" elements="589" coveredelements="569" complexity="0" loc="404" ncloc="404" packages="35" files="42" classes="42"/>
     <package name="src">
       <metrics statements="15" coveredstatements="14" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="2"/>
       <file name="App.tsx" path="C:\Lavoro\esercizi\frontend-cinematic\src\App.tsx">
@@ -314,13 +314,14 @@
       </file>
     </package>
     <package name="src.components.PublicFilmCard">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="PublicFilmCard.tsx" path="C:\Lavoro\esercizi\frontend-cinematic\src\components\PublicFilmCard\PublicFilmCard.tsx">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="2" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="26" count="2" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
       </file>
     </package>
     <package name="src.components.PublicFilmCards">
